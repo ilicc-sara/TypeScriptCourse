@@ -6,17 +6,15 @@ function App() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      try {
-        const response = await fetch(`https://reqres.in/api/users`).then(
-          (res) => {
-            console.log(res);
-          }
-        );
-        const posts = await response.json();
-        console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
+      const response = await fetch(`https://reqres.in/api/users`)
+        .then((res) => {
+          res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        });
+      // const posts = await response.json();
+      // console.log(posts);
     };
 
     fetchPost();
