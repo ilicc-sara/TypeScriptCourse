@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./App.css";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
