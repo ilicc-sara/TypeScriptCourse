@@ -2,25 +2,41 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const newUser = {
+    name: "Maria",
+    job: "Teacher",
+  };
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const response = await fetch(`https://reqres.in/api/users`)
-        .then((res) => {
-          res.json();
-        })
-        .then((data) => {
-          console.log(data);
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("https://reqres.in/api/users/87", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "reqres-free-v1",
+          },
+          body: JSON.stringify(newUser),
         });
-      // const posts = await response.json();
-      // console.log(posts);
+        if (!res.ok) {
+          console.log("Problem");
+          return;
+        }
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
     };
 
-    fetchPost();
+    fetchUsers();
   }, []);
 
-  return <></>;
+  return (
+    <>
+      <h1>Baklava</h1>
+    </>
+  );
 }
 
 export default App;
