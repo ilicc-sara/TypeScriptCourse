@@ -32,9 +32,31 @@ function App() {
     fetchUsers();
   }, []);
 
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const res = await fetch("https://reqres.in/api/users", {
+  //         headers: {
+  //           "x-api-key": "reqres-free-v1",
+  //         },
+  //       });
+  //       if (!res.ok) {
+  //         console.log("Problem");
+  //         return;
+  //       }
+  //       const data = await res.json();
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error("Error fetching users:", error);
+  //     }
+  //   };
+
+  //   fetchUsers();
+  // }, []);
+
   return (
     <>
-      <h1>Baklava</h1>
+      <h1>FETCH METHOD POST</h1>
     </>
   );
 }
