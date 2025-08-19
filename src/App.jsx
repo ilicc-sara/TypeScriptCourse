@@ -18,13 +18,12 @@ function DataFetcher() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("https://api.example.com/data");
-        if (!res.ok) {
-          throw new Error(`HTTP greška: ${res.status}`);
-        }
+        const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+        if (!res.ok) throw new Error(`error: ${res.status}`);
         const json = await res.json();
         setData(json);
       } catch (err) {
+        console.error("error fetch:", err);
         throw err;
       }
     }
