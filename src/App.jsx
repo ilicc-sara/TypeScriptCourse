@@ -2,62 +2,26 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const newUser = {
-    name: "Maria",
-    job: "Teacher",
-  };
+  const [blogs, setBlogs] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("https://reqres.in/api/users/87", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": "reqres-free-v1",
-          },
-          body: JSON.stringify(newUser),
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setBlogs(data);
+          setIsPending(false);
         });
-        if (!res.ok) {
-          console.log("Problem");
-          return;
-        }
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    fetchUsers();
+    }, 1000);
   }, []);
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const res = await fetch("https://reqres.in/api/users", {
-  //         headers: {
-  //           "x-api-key": "reqres-free-v1",
-  //         },
-  //       });
-  //       if (!res.ok) {
-  //         console.log("Problem");
-  //         return;
-  //       }
-  //       const data = await res.json();
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error("Error fetching users:", error);
-  //     }
-  //   };
-
-  //   fetchUsers();
-  // }, []);
-
   return (
-    <>
-      <h1>FETCH METHOD POST</h1>
-    </>
+    <div className="home">
+      {isPending && <div>Loading...</div>}
+      {blogs && <BlogList blogs={blogs} title="All Blogs!" />}
+    </div>
   );
 }
 
