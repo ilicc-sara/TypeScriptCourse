@@ -17,51 +17,57 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #065421;
+  background: linear-gradient(135deg, #f9f9fb, #e6ecf5);
   color: #222;
 }
 
 .app-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
 .card {
   background: #fff;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 90%;
-  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card h1 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: #2c7a7b;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.12);
 }
 
-.card pre {
-  background: #f1f1f1;
-  padding: 1rem;
-  text-align: left;
-  border-radius: 0.5rem;
-  overflow-x: auto;
+.card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+  color: #333;
 }
 
-.loading {
-  font-size: 1.2rem;
+.card p {
+  margin: 0 0 0.5rem;
   color: #555;
-  background: #fff;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Error box */
+.card small {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.card.done {
+  border-left: 6px solid #2ecc71;
+}
+
+.card.pending {
+  border-left: 6px solid #f39c12;
+}
+
 .error-box {
   background: #ffecec;
   color: #b00020;
@@ -69,11 +75,8 @@ body {
   border-radius: 1rem;
   text-align: center;
   box-shadow: 0px 3px 8px rgba(255, 0, 0, 0.2);
-  max-width: 400px;
-}
-
-.error-box h2 {
-  margin-bottom: 1rem;
+  max-width: 500px;
+  margin: 4rem auto;
 }
 
 .error-box pre {
@@ -97,4 +100,20 @@ body {
 
 .error-box button:hover {
   background: #d32f2f;
+}
+
+.loading {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 4rem auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
