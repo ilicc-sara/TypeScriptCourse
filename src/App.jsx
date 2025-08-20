@@ -24,12 +24,14 @@ function DataFetcher() {
         const res = await fetch("https://jsonplaceholder.typicode.com/todos");
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const json = await res.json();
-        setData(json);
+
+        setTimeout(() => {
+          setData(json);
+          setLoading(false);
+        }, 3000);
       } catch (err) {
         console.error("Fetch error:", err);
         throw err;
-      } finally {
-        setLoading(false);
       }
     }
     fetchData();
