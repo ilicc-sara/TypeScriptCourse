@@ -35,14 +35,16 @@ function DataFetcher() {
 
 function App() {
   return (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={() => {
-        window.location.reload();
-      }}
-    >
-      <DataFetcher />
-    </ErrorBoundary>
+    <div className="app-container">
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          window.location.reload();
+        }}
+      >
+        <DataFetcher />
+      </ErrorBoundary>
+    </div>
   );
 }
 
