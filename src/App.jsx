@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import "./App.css";
+import Item from "./Item";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -38,17 +39,14 @@ function DataFetcher() {
 
   return (
     <div className="grid">
-      {data.slice(0, 20).map((todo) => (
-        <div
-          key={todo.id}
-          className={`card ${todo.completed ? "done" : "pending"}`}
-        >
-          <h3>{todo.title}</h3>
-          <p>Status: {todo.completed ? "✅ Completed" : "⏳ Pending"}</p>
-          <small>
-            ID: {todo.id} | User: {todo.userId}
-          </small>
-        </div>
+      {data.slice(0, 20).map((todo, index) => (
+        <Item
+          key={index}
+          id={todo.id}
+          completed={todo.completed}
+          title={todo.title}
+          userId={todo.userId}
+        />
       ))}
     </div>
   );
