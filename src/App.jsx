@@ -17,6 +17,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 function DataFetcher() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeId, setActiveId] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -48,6 +49,8 @@ function DataFetcher() {
           completed={todo.completed}
           title={todo.title}
           userId={todo.userId}
+          activeId={activeId}
+          setActiveId={setActiveId}
         />
       ))}
     </div>
