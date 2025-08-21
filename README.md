@@ -64,3 +64,13 @@ If you are developing a production application, we recommend using TypeScript wi
 
 // fetchUsers();
 // }, []);
+
+function ErrorFallback({ error, resetErrorBoundary }) {
+return (
+<div className="error-box">
+<h2>⚠️ Oops, something went wrong!</h2>
+<pre>{error.message}</pre>
+<button onClick={resetErrorBoundary}>🔄 Try again</button>
+</div>
+);
+}

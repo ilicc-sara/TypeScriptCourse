@@ -1,19 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import "./App.css";
 import Item from "./Item";
 import { ToastContainer, toast } from "react-toastify";
-
-function ErrorFallback({ error, resetErrorBoundary }) {
-  return (
-    <div className="error-box">
-      <h2>⚠️ Oops, something went wrong!</h2>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>🔄 Try again</button>
-    </div>
-  );
-}
 
 function DataFetcher() {
   const [data, setData] = useState([]);
@@ -24,9 +13,9 @@ function DataFetcher() {
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://jsonplaceholder.typicode.com/toos")
+      fetch("https://jsonplaceholder.typicode.com/todos/123")
         .then((res) => {
-          if (!res.ok) throw new Error(`Error: ${res.status}`);
+          // if (!res.ok) throw new Error(`Error: ${res.status}`);
           return res.json();
         })
         .then((json) => {
@@ -68,14 +57,8 @@ function App() {
   return (
     <div className="app-container">
       <ToastContainer position="top-center" />
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-        onReset={() => {
-          window.location.reload();
-        }}
-      >
-        <DataFetcher />
-      </ErrorBoundary>
+
+      <DataFetcher />
     </div>
   );
 }
