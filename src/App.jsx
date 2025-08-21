@@ -23,7 +23,7 @@ function DataFetcher() {
           setTimeout(() => {
             setData(json);
             setLoading(false);
-          }, 3000);
+          }, 2000);
         })
         .catch((err) => {
           console.error("Fetch error:", err.message);

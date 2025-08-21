@@ -1,5 +1,3 @@
-import React from "react";
-
 function Item(props) {
   const { id, completed, title, userId, activeId, setActiveId, onToggle } =
     props;
