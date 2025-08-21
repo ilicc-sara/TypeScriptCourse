@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import "./App.css";
 import Item from "./Item";
+import { ToastContainer, toast } from "react-toastify";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -19,22 +20,28 @@ function DataFetcher() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState(null);
 
+  toast.success("lkmrfnlk");
+
   useEffect(() => {
     async function fetchData() {
-      try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
-        const json = await res.json();
-
-        setTimeout(() => {
-          setData(json);
-          setLoading(false);
-        }, 3000);
-      } catch (err) {
-        console.error("Fetch error:", err);
-        throw err;
-      }
+      fetch("https://jsonplaceholder.typicode.com/toos")
+        .then((res) => {
+          if (!res.ok) throw new Error(`Error: ${res.status}`);
+          return res.json();
+        })
+        .then((json) => {
+          setTimeout(() => {
+            setData(json);
+            setLoading(false);
+          }, 3000);
+        })
+        .catch((err) => {
+          console.error("Fetch error:", err.message);
+          toast.error(err.message);
+          throw err;
+        });
     }
+
     fetchData();
   }, []);
 
@@ -60,6 +67,7 @@ function DataFetcher() {
 function App() {
   return (
     <div className="app-container">
+      <ToastContainer position="top-center" />
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
         onReset={() => {
