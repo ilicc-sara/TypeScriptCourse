@@ -9,18 +9,14 @@ function DataFetcher() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState(null);
 
-  toast.success("lkmrfnlk");
-
   useEffect(() => {
     async function fetchData() {
-      fetch("https://jsonplaceholder.typicode.com/todos/123", {
+      fetch("https://jsonplaceholder.typicode.com/todos", {
         cache: "no-store",
       })
         .then((res) => {
           console.log(res.status);
-          if (!res.ok) {
-            throw new Error(`Error: ${res.status}`);
-          }
+
           return res.json();
         })
         .then((json) => {
@@ -39,6 +35,14 @@ function DataFetcher() {
     fetchData();
   }, []);
 
+  const handleToggle = (id) => {
+    setData((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   if (loading) return <div className="loading"></div>;
 
   return (
@@ -52,6 +56,7 @@ function DataFetcher() {
           userId={todo.userId}
           activeId={activeId}
           setActiveId={setActiveId}
+          onToggle={handleToggle}
         />
       ))}
     </div>
@@ -62,7 +67,7 @@ function App() {
   return (
     <div className="app-container">
       <ToastContainer position="top-center" />
-
+      <h1 className="title">✅ Todo Dashboard</h1>
       <DataFetcher />
     </div>
   );

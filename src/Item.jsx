@@ -1,7 +1,8 @@
 import React from "react";
 
 function Item(props) {
-  const { id, completed, title, userId, activeId, setActiveId } = props;
+  const { id, completed, title, userId, activeId, setActiveId, onToggle } =
+    props;
   return (
     <div
       onClick={() => setActiveId(id)}
@@ -9,6 +10,12 @@ function Item(props) {
         activeId === id ? "active" : ""
       }`}
     >
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={() => onToggle(id)}
+        onClick={(e) => e.stopPropagation()}
+      />
       <h3>{title}</h3>
       <p>Status: {completed ? "✅ Completed" : "⏳ Pending"}</p>
       <small>
