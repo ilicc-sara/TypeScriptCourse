@@ -13,9 +13,14 @@ function DataFetcher() {
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://jsonplaceholder.typicode.com/todos/123")
+      fetch("https://jsonplaceholder.typicode.com/todos/123", {
+        cache: "no-store",
+      })
         .then((res) => {
-          // if (!res.ok) throw new Error(`Error: ${res.status}`);
+          console.log(res.status);
+          if (!res.ok) {
+            throw new Error(`Error: ${res.status}`);
+          }
           return res.json();
         })
         .then((json) => {
@@ -38,7 +43,7 @@ function DataFetcher() {
 
   return (
     <div className="grid">
-      {data.slice(0, 20).map((todo, index) => (
+      {data?.slice(0, 20).map((todo, index) => (
         <Item
           key={index}
           id={todo.id}
