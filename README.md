@@ -1,76 +1,73 @@
-# React + Vite
+# React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
 ## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-<!-- FETCH METHOD POST: -->
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-// const newUser = {
-// name: "Maria",
-// job: "Teacher",
-// };
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-// useEffect(() => {
-// const fetchUsers = async () => {
-// try {
-// const res = await fetch("https://reqres.in/api/users/87", {
-// method: "POST",
-// headers: {
-// "Content-Type": "application/json",
-// "x-api-key": "reqres-free-v1",
-// },
-// body: JSON.stringify(newUser),
-// });
-// if (!res.ok) {
-// console.log("Problem");
-// return;
-// }
-// const data = await res.json();
-// console.log(data);
-// } catch (error) {
-// console.error("Error fetching users:", error);
-// }
-// };
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-// fetchUsers();
-// }, []);
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-// useEffect(() => {
-// const fetchUsers = async () => {
-// try {
-// const res = await fetch("https://reqres.in/api/users", {
-// headers: {
-// "x-api-key": "reqres-free-v1",
-// },
-// });
-// if (!res.ok) {
-// console.log("Problem");
-// return;
-// }
-// const data = await res.json();
-// console.log(data);
-// } catch (error) {
-// console.error("Error fetching users:", error);
-// }
-// };
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-// fetchUsers();
-// }, []);
-
-function ErrorFallback({ error, resetErrorBoundary }) {
-return (
-<div className="error-box">
-<h2>⚠️ Oops, something went wrong!</h2>
-<pre>{error.message}</pre>
-<button onClick={resetErrorBoundary}>🔄 Try again</button>
-</div>
-);
-}
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
