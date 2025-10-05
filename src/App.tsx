@@ -2,70 +2,73 @@ import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 
-type Todo = {
+type Task = {
   id: number;
   text: string;
-  completed: boolean;
 };
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [input, setInput] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInput(e.target.value);
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (inputValue.trim() === "") return;
+    if (!input.trim()) return;
 
-    const newTodo: Todo = {
-      id: Date.now(),
-      text: inputValue,
-      completed: false,
-    };
-
-    setTodos((prev) => [...prev, newTodo]);
-    setInputValue("");
+    const newTask: Task = { id: Date.now(), text: input.trim() };
+    setTasks((prev) => [...prev, newTask]);
+    setInput("");
   };
 
-  const toggleTodo = (id: number) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  const handleDelete = (id: number) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
   };
+
+  const handleSort = () => {
+    setTasks((prev) => [...prev].sort((a, b) => a.text.localeCompare(b.text)));
+  };
+
+  const handleClear = () => setTasks([]);
 
   return (
-    <div className="app-container">
+    <div className="app">
       <h1>TypeScript To-Do App ✅</h1>
+      <h2>Total tasks: {tasks.length}</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="task-form">
         <input
           type="text"
-          value={inputValue}
+          value={input}
           onChange={handleChange}
-          placeholder="Add a new task..."
+          placeholder="Enter a new task..."
         />
         <button type="submit">Add</button>
       </form>
 
+      {tasks.length > 1 && (
+        <button className="sort-btn" onClick={handleSort}>
+          Sort tasks A–Z
+        </button>
+      )}
+
       <ul>
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            onClick={() => toggleTodo(todo.id)}
-            style={{
-              textDecoration: todo.completed ? "line-through" : "none",
-              cursor: "pointer",
-            }}
-          >
-            {todo.text}
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <span>{task.text}</span>
+            <button onClick={() => handleDelete(task.id)}>✖</button>
           </li>
         ))}
       </ul>
+
+      {tasks.length > 0 && (
+        <button className="clear-btn" onClick={handleClear}>
+          Clear all
+        </button>
+      )}
     </div>
   );
 }
