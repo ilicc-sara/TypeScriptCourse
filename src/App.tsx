@@ -7,6 +7,15 @@ type Task = {
   text: string;
 };
 
+// const num: number = "some string";
+const num: number = 9;
+
+const run = (message: string) => {
+  console.log(message);
+};
+
+run("Hello!");
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
