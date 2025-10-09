@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 import type { Equal } from "./types";
@@ -67,21 +67,39 @@ run("Hello!");
 //   expect(result).toEqual("John Doe");
 // });
 
-const concatName = (user: { first: string; last: string }) => {
-  // return `${user.first} ${user.last}`;
+// const concatName = (user: { first: string; last: string }) => {
+//   // return `${user.first} ${user.last}`;
+//   return `${user.first} ${user.last}`;
+// };
+
+// it("should return the full name", () => {
+//   const result = concatName({
+//     first: "John",
+//     last: "Doe",
+//   });
+
+//   type test = Expect<Equal<typeof result, string>>;
+
+//   expect(result).toEqual("John Doe");
+// });
+
+const concatName = (user: { first: string; last?: string }) => {
+  if (!user.last) {
+    return user.first;
+  }
+
   return `${user.first} ${user.last}`;
 };
 
 it("should return the full name", () => {
   const result = concatName({
     first: "John",
-    last: "Doe",
+    // last: "Doe",
+    last: undefined,
   });
-
-  type test = Expect<Equal<typeof result, string>>;
-
-  expect(result).toEqual("John Doe");
 });
+
+type test = Expect<Equal<typeof result, string>>;
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
