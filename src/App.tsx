@@ -1,8 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
-
-import { expect, it } from "vitest";
+import type { Equal } from "./types";
 
 type Task = {
   id: number;
@@ -46,11 +45,11 @@ run("Hello!");
 // let example4: symbol = Symbol();
 // let example5: bigint = 123n;
 
-const concatName = (first: string, last: string = "Pocock") => {
-  if (!last) return first;
+// const concatName = (first: string, last: string = "Pocock") => {
+//   if (!last) return first;
 
-  return `${first} ${last}`;
-};
+//   return `${first} ${last}`;
+// };
 
 // const result = concatName("John", "Doe");
 
@@ -60,8 +59,24 @@ const concatName = (first: string, last: string = "Pocock") => {
 
 // type test2 = Expect<Equal<typeof result2, string>>;
 
+// it("should return the full name", () => {
+//   const result = concatName("John", "Doe");
+
+//   type test = Expect<Equal<typeof result, string>>;
+
+//   expect(result).toEqual("John Doe");
+// });
+
+const concatName = (user: { first: string; last: string }) => {
+  // return `${user.first} ${user.last}`;
+  return `${user.first} ${user.last}`;
+};
+
 it("should return the full name", () => {
-  const result = concatName("John", "Doe");
+  const result = concatName({
+    first: "John",
+    last: "Doe",
+  });
 
   type test = Expect<Equal<typeof result, string>>;
 
