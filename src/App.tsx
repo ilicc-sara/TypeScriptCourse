@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-
 import "./App.css";
-import type { Equal } from "./types";
+
+import { expect, it } from "vitest";
 
 type Task = {
   id: number;
@@ -40,25 +40,33 @@ run("Hello!");
 
 // type test = Expect<Equal<typeof result, string>>;
 
-let example1: string = "Hello World!";
-let example2: number = 42;
-let exapmle3: boolean = true;
-let example4: symbol = Symbol();
-let example5: bigint = 123n;
+// let example1: string = "Hello World!";
+// let example2: number = 42;
+// let exapmle3: boolean = true;
+// let example4: symbol = Symbol();
+// let example5: bigint = 123n;
 
-const concatName = (first: string, last?: string) => {
+const concatName = (first: string, last: string = "Pocock") => {
   if (!last) return first;
 
   return `${first} ${last}`;
 };
 
-const result = concatName("John", "Doe");
+// const result = concatName("John", "Doe");
 
-type test = Expect<Equal<typeof result, string>>;
+// type test = Expect<Equal<typeof result, string>>;
 
-const result2 = concatName("John");
+// const result2 = concatName("John");
 
-type test2 = Expect<Equal<typeof result2, string>>;
+// type test2 = Expect<Equal<typeof result2, string>>;
+
+it("should return the full name", () => {
+  const result = concatName("John", "Doe");
+
+  type test = Expect<Equal<typeof result, string>>;
+
+  expect(result).toEqual("John Doe");
+});
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
