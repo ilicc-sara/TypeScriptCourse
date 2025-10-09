@@ -15,6 +15,28 @@ const run = (message: string) => {
 };
 
 run("Hello!");
+// // CODE
+// const add = (a: number, b: number) => {
+//   return a + b;
+// };
+
+// // TEST
+
+// const result = add(1, 2);
+
+// type test = Expect<Equal<typeof result, number>>;
+
+// CODE
+
+const concatTwoStrings = (a: string, b: string) => {
+  return [a, b].join("");
+};
+
+// TEST
+
+const result = concatTwoStrings("Hello", "World");
+
+type test = Expect<Equal<typeof result, string>>;
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
