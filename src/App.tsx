@@ -83,23 +83,40 @@ run("Hello!");
 //   expect(result).toEqual("John Doe");
 // });
 
-const concatName = (user: { first: string; last?: string }) => {
-  if (!user.last) {
-    return user.first;
-  }
+// const concatName = (user: { first: string; last?: string }) => {
+//   if (!user.last) {
+//     return user.first;
+//   }
 
-  return `${user.first} ${user.last}`;
+//   return `${user.first} ${user.last}`;
+// };
+
+// it("should return the full name", () => {
+//   const result = concatName({
+//     first: "John",
+//     // last: "Doe",
+//     last: undefined,
+//   });
+// });
+
+// type test = Expect<Equal<typeof result, string>>;
+
+type Rectangle = { width: number; height: number };
+
+const getRectangleArea = (rectangle: Rectangle) => {
+  return rectangle.width * rectangle.height;
 };
 
-it("should return the full name", () => {
-  const result = concatName({
-    first: "John",
-    // last: "Doe",
-    last: undefined,
+const getRectangleParameter = (rectangle: Rectangle) => {
+  return 2 * (rectangle.width + rectangle.height);
+};
+
+it("should return the area of a rectangle", () => {
+  const result = getRectangleArea({
+    width: 10,
+    height: 20,
   });
 });
-
-type test = Expect<Equal<typeof result, string>>;
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
