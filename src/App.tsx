@@ -2,6 +2,7 @@ import { use, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 import type { Equal } from "./types";
+import { expect, it } from "vitest";
 
 type Task = {
   id: number;
@@ -201,26 +202,49 @@ processRecipe({
 // // @ts-expect-error too many arguments
 // setRange([0, 10, 20]);
 
-const goToLocation = (coordinates: [number, number, number?]) => {
-  const latitude = coordinates[0];
-  const longitude = coordinates[1];
-  const elevation = coordinates[2];
+// const goToLocation = (coordinates: [number, number, number?]) => {
+//   const latitude = coordinates[0];
+//   const longitude = coordinates[1];
+//   const elevation = coordinates[2];
 
-  // Do something with latitude, longitude, and elevations in here
+//   // Do something with latitude, longitude, and elevations in here
 
-  type tests = [
-    Expect<Equal<typeof latitude, number>>,
-    Expect<Equal<typeof longitude, number>>,
-    Expect<Equal<typeof elevation, number | undefined>>
-  ];
+//   type tests = [
+//     Expect<Equal<typeof latitude, number>>,
+//     Expect<Equal<typeof longitude, number>>,
+//     Expect<Equal<typeof elevation, number | undefined>>
+//   ];
+// };
+
+// goToLocation([10, 20]);
+
+// // @ts-expect-error string is not assignable to number
+// goToLocation([10, "20"]);
+
+// goToLocation([10, 20, 30]);
+
+// type ANY in TYPE SCRIPT (video 48)
+
+const handleFormData = (e: any) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const value = Object.fromEntries(data.entries());
+  return value;
 };
 
-goToLocation([10, 20]);
+it("Should handle a form submit", () => {
+  const form = document.createElement("form");
+  form.innerHTML = `<input name="name value="John Doe />`;
 
-// @ts-expect-error string is not assignable to number
-goToLocation([10, "20"]);
+  form.onSubmit = (e) => {
+    const value = handleFormData(e);
+    expect(value).toEqual({ name: "John Doe" });
+  };
 
-goToLocation([10, 20, 30]);
+  form.requestSubmit();
+
+  expect.assertions(1);
+});
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
