@@ -236,7 +236,7 @@ it("Should handle a form submit", () => {
   const form = document.createElement("form");
   form.innerHTML = `<input name="name value="John Doe />`;
 
-  form.onSubmit = (e) => {
+  form.onSubmit = (e: any) => {
     const value = handleFormData(e);
     expect(value).toEqual({ name: "John Doe" });
   };
@@ -245,6 +245,40 @@ it("Should handle a form submit", () => {
 
   expect.assertions(1);
 });
+
+//  FUNCTION TYPES (video 50)
+
+type User = {
+  id: string;
+  name: string;
+};
+
+const modifyUser = (user: User[], id: string, makeChange) => {
+  return user.map((u) => {
+    if (u.id === id) {
+      return makeChange(u);
+    }
+    return u;
+  });
+};
+
+const users: User[] = [
+  { id: "1", name: "John" },
+  { id: "2", name: "Jane" },
+];
+
+modifyUser(users, "1", (user) => {
+  return { ...user, name: "Wayne" };
+});
+
+modifyUser(
+  users,
+  "1",
+  // @ts-expect-error
+  (user) => {
+    return { ...user, name: 123 };
+  }
+);
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
