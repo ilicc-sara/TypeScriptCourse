@@ -135,15 +135,19 @@ processCart({
 
 // ARRAYS OF OBJECT IN TYPE SCRIPT (video 40)
 
-type Ingredient = {
-  name: string;
-  quantity: string;
-};
+// type Ingredient = {
+//   name: string;
+//   quantity: string;
+// };
 
 type Recipe = {
   title: string;
   instructions: string;
-  ingredients: Ingredient[];
+  // ingredients: Ingredient[];
+  ingredients: Array<{
+    name: string;
+    quantity: string;
+  }>;
 };
 
 const processRecipe = (recipe: Recipe) => {
@@ -158,6 +162,19 @@ processRecipe({
   ],
   instructions: "...",
 });
+
+// REST PARAMETERS IN TYPE SCRIPT (video 43)
+
+// export function concatenate(num: number, ...strings: string[]) {
+//   return strings.join("");
+// }
+
+// it("should concatenate strings", () => {
+//   const result = concatenate(1, "Hello", "", "World");
+//   expect(result).toEqual("Hello World");
+
+//   type test = Expect<Equal<typeof result, string>>;
+// });
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
