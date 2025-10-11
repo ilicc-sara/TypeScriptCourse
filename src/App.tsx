@@ -176,6 +176,31 @@ processRecipe({
 //   type test = Expect<Equal<typeof result, string>>;
 // });
 
+// TUPLES FOR PRECISE ARRAY STRUCTURE
+// const setRange = (range: [number, number]) => {
+//   const x = range[0];
+//   const y = range[1];
+
+//   // do something with x and y here
+
+//   // x and y should both be numbers!
+//   type tests = [
+//     Expect<Equal<typeof x, number>>,
+//     Expect<Equal<typeof y, number>>
+//   ];
+// };
+
+// setRange([0, 10]);
+
+// // @ts-expect-error string is not assignable to number
+// setRange([0, "10"]);
+
+// // @ts-expect-error too few arguments
+// setRange([0]);
+
+// // @ts-expect-error too many arguments
+// setRange([0, 10, 20]);
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
