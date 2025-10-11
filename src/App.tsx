@@ -201,6 +201,27 @@ processRecipe({
 // // @ts-expect-error too many arguments
 // setRange([0, 10, 20]);
 
+const goToLocation = (coordinates: [number, number, number?]) => {
+  const latitude = coordinates[0];
+  const longitude = coordinates[1];
+  const elevation = coordinates[2];
+
+  // Do something with latitude, longitude, and elevations in here
+
+  type tests = [
+    Expect<Equal<typeof latitude, number>>,
+    Expect<Equal<typeof longitude, number>>,
+    Expect<Equal<typeof elevation, number | undefined>>
+  ];
+};
+
+goToLocation([10, 20]);
+
+// @ts-expect-error string is not assignable to number
+goToLocation([10, "20"]);
+
+goToLocation([10, 20, 30]);
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
