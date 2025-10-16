@@ -1,8 +1,8 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
-import type { Equal } from "./types";
 import { expect, it } from "vitest";
+import type { Expect, Equal } from "./helpers";
 
 type Task = {
   id: number;
@@ -335,6 +335,37 @@ userMap.set("3", { name: "Anna", age: 29 });
 // @ts-expect-error
 userMap.set(3, "123");
 
+//////////////////////// DEBUGGING JSON PARSING (video 58)
+
+const parseData: {
+  name: string;
+  age: number;
+} = JSON.parse('{"name": "Alice", "age": 30}');
+
+type test = Expect<
+  Equal<
+    typeof parseData,
+    {
+      name: string;
+      age: number;
+    }
+  >
+>;
+
+//////////////////////////////// TYPING FETCH API RESPONSES IN ASYNC FUNCTIONS
+
+async function fetchData(): Promise<number> {
+  const response = await fetch("https://api.example.com/data");
+  const data = await response.json();
+  return data;
+}
+
+const example = async () => {
+  const data = await fetchData();
+
+  type test = Expect<Equal<typeof data, number>>;
+};
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
