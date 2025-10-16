@@ -246,7 +246,7 @@ it("Should handle a form submit", () => {
   expect.assertions(1);
 });
 
-//  FUNCTION TYPES (video 50)
+//////////////////////////////  FUNCTION TYPES (video 50)
 
 type User = {
   id: string;
@@ -282,7 +282,7 @@ modifyUser(
   }
 );
 
-// TYPING AN EVENT LISTENER (VIDEO 52)
+////////////////////////// TYPING AN EVENT LISTENER (VIDEO 52)
 
 const addClickEventListener = (listener: () => void) => {
   document.addEventListener("click", listener);
@@ -292,7 +292,7 @@ const listener = () => {
   console.log("Clicked");
 };
 
-const result = listener();
+// const result = listener();
 
 addClickEventListener(listener);
 
@@ -300,6 +300,40 @@ addClickEventListener(
   // @ts-expect-error
   "abc"
 );
+
+//////////////////////////////////// RESTRICTING (video 54)
+
+// const userIds = new Set<number>();
+const userIds: Set<number> = new Set();
+
+userIds.add(1);
+userIds.add(2);
+userIds.add(3);
+
+// @ts-expect-error
+userIds.add("123");
+// @ts-expect-error
+userIds.add({ name: "Max" });
+
+/////////////////////// TYPE CHECKING MAPS
+
+type user = {
+  name: string;
+  age: number;
+};
+
+const userMap = new Map<number, user>();
+
+const result = userMap.get(1);
+
+userMap.set(1, { name: "Max", age: 30 });
+userMap.set(2, { name: "Manuel", age: 31 });
+
+// @ts-expect-error
+userMap.set("3", { name: "Anna", age: 29 });
+
+// @ts-expect-error
+userMap.set(3, "123");
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
