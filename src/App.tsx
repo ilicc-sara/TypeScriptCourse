@@ -282,6 +282,25 @@ modifyUser(
   }
 );
 
+// TYPING AN EVENT LISTENER (VIDEO 52)
+
+const addClickEventListener = (listener: () => void) => {
+  document.addEventListener("click", listener);
+};
+
+const listener = () => {
+  console.log("Clicked");
+};
+
+const result = listener();
+
+addClickEventListener(listener);
+
+addClickEventListener(
+  // @ts-expect-error
+  "abc"
+);
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState("");
