@@ -352,7 +352,7 @@ type test = Expect<
   >
 >;
 
-//////////////////////////////// TYPING FETCH API RESPONSES IN ASYNC FUNCTIONS
+//////////////////////////////// TYPING FETCH API RESPONSES IN ASYNC FUNCTIONS (video 60)
 
 async function fetchData(): Promise<number> {
   const response = await fetch("https://api.example.com/data");
@@ -364,6 +364,17 @@ const example = async () => {
   const data = await fetchData();
 
   type test = Expect<Equal<typeof data, number>>;
+};
+
+let thing = 123;
+
+let otherThing = {
+  name: "Alice",
+};
+
+const otherObject = {
+  ...otherThing,
+  thing,
 };
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
