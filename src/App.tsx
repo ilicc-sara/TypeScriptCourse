@@ -394,8 +394,54 @@ const element = document.getElementById("12");
 const myFunction = (a: number, b: number) => {
   return a + b;
 };
-
 myFunction(1, 2);
+
+type MyObj = {
+  foo: string;
+  bar: number;
+  baz: boolean;
+};
+
+const acceptsObj = (obj: MyObj) => {};
+
+acceptsObj({
+  // autocomplete in here!
+  bar: 12,
+  foo: "string",
+  baz: false,
+});
+
+document.addEventListener(
+  // Autocomplete this string!
+  "DOMContentLoaded",
+  (event) => {
+    console.log(event);
+  }
+);
+
+// /////// type script approact to errors (video 70)
+
+/** typeScript sometimes warns you about  */
+/** things which will fail at runtime  */
+
+const a = null;
+
+a.toString();
+
+// But not everything et warns you
+// about will fail at runtime
+
+const obj = {};
+
+obj.foo = "some string";
+
+// it will try t warn you as close to
+// the source of the problem as possible
+
+type MyUser = {
+  name: string;
+};
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -447,7 +493,7 @@ function App() {
 
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
+          <li key={task.id} className="item-list-element">
             <span>{task.text}</span>
             <button onClick={() => handleDelete(task.id)}>✖</button>
           </li>
