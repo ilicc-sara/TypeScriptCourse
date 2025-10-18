@@ -447,6 +447,12 @@ const user: MyUser = {
 
 // But sometimes that's not always possible
 
+type FunctionThatReturnsAString = () => string;
+
+const fn: FunctionThatReturnsAString = () => {
+  return "123";
+};
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
