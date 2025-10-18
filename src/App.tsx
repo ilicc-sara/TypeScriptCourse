@@ -424,14 +424,13 @@ document.addEventListener(
 /** typeScript sometimes warns you about  */
 /** things which will fail at runtime  */
 
-const a = null;
-
-a.toString();
+// const a = null;
+// a.toString();
 
 // But not everything et warns you
 // about will fail at runtime
 
-const obj = {};
+const obj: { foo: string } = { foo: "" };
 
 obj.foo = "some string";
 
@@ -441,6 +440,12 @@ obj.foo = "some string";
 type MyUser = {
   name: string;
 };
+
+const user: MyUser = {
+  name: "Katherine",
+};
+
+// But sometimes that's not always possible
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
