@@ -366,6 +366,8 @@ const example = async () => {
   type test = Expect<Equal<typeof data, number>>;
 };
 
+//   introspecting variables and declarations in type script
+
 let thing = 123;
 
 let otherThing = {
@@ -376,6 +378,24 @@ const otherObject = {
   ...otherThing,
   thing,
 };
+
+otherObject.thing;
+
+const element = document.getElementById("12");
+
+/**
+ * Adds two numbers together
+ *
+ * @example
+ *
+ * myFunction(1, 2);
+ * // adding two numbers
+ */
+const myFunction = (a: number, b: number) => {
+  return a + b;
+};
+
+myFunction(1, 2);
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
