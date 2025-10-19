@@ -453,6 +453,23 @@ const fn: FunctionThatReturnsAString = () => {
   return "123";
 };
 
+// //////////////// Quick Renaming in VS code (video 71)
+
+const users1 = [
+  { id: "1", name: "Robin" },
+  { id: "2", name: "Dennis" },
+  { id: "3", name: "Sara" },
+];
+
+// Imagine this function was 10x bigger
+// with 10x more references to "id"
+
+// How do we change id to userId?
+
+const filterUsersById = (identificationNum: string) => {
+  return users1.filter((user) => user.id === identificationNum);
+};
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
