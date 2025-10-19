@@ -470,6 +470,26 @@ const filterUsersById = (identificationNum: string) => {
   return users1.filter((user) => user.id === identificationNum);
 };
 
+// ////////// Navigating Code with _Go to Definition_
+
+// You can use go to definition to jump to the definition of something
+
+const myFunction = () => {
+  console.log("Hello!");
+};
+
+myFunction();
+
+// This can work across files, too:
+
+import { hiThere } from "./dummy-import";
+
+hiThere();
+
+// As well as on types:
+
+type Example = PropertyKey;
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
