@@ -474,21 +474,23 @@ const filterUsersById = (identificationNum: string) => {
 
 // You can use go to definition to jump to the definition of something
 
-const myFunction = () => {
-  console.log("Hello!");
-};
+// const myFunction = () => {
+//   console.log("Hello!");
+// };
 
-myFunction();
+// myFunction();
 
-// This can work across files, too:
+// // This can work across files, too:
 
-import { hiThere } from "./dummy-import";
+// import { hiThere } from "./dummy-import";
 
-hiThere();
+// hiThere();
 
-// As well as on types:
+// // As well as on types:
 
-type Example = PropertyKey;
+// type Example = PropertyKey;
+
+// //////////////////////////// FAST IMPORTS IN VS CODE
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
