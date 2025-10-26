@@ -19,6 +19,17 @@ import {
   FILTER_OPTIONS,
 } from "./dummy-import-2";
 
+// REFACTORING TO BE ITS OWN FUNCTION: (video 77)
+const func = () => {
+  // Refactor this to be its own function
+  const randomPercentage = `${(Math.random() * 100).toFixed(2)}%`;
+  console.log(randomPercentage);
+};
+
+function getRandomPercentage() {
+  return `${(Math.random() * 100).toFixed(2)}%`;
+}
+
 ///// ORGANISING IMPORTS COMMAND: Ctrl + Alt + o
 const handlePage = (page: number) => {
   if (page > MAX_PAGE) {
