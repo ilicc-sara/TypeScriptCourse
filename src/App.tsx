@@ -19,6 +19,28 @@ import {
 //   FILTER_OPTIONS,
 // } from "./dummy-import-2";
 
+// RESTRICTING FUNCTION PARAMETERS (video 84)
+
+function move(direction: "up" | "down" | "left" | "right", distance: number) {
+  // Move the specified sidtance in the given direction
+}
+
+// TESTS
+move("up", 10);
+move("left", 5);
+
+move(
+  // @ts-expect-error - "up-right" is not a valid direction
+  "up-right",
+  10
+);
+
+move(
+  // @ts-expect-error - "down-left" is not valid direction
+  "down-left",
+  10
+);
+
 ///// HANDLING NULL VALUES IN TYPE SCRIPT (video 81)
 
 function getUsername(username: string | null) {
