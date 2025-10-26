@@ -19,6 +19,28 @@ import {
 //   FILTER_OPTIONS,
 // } from "./dummy-import-2";
 
+// RESOLVING LITERAL TYPES TO WIDER TYPES (video 90)
+
+const getResolvedIconSize = (
+  iconSize: "small" | "medium" | "large" | (string & {})
+) => {
+  switch (iconSize) {
+    case "small":
+      return 16;
+    case "medium":
+      return 32;
+    case "large":
+      return 48;
+    default:
+      return iconSize;
+  }
+};
+
+// It doesn't give you autocomplete for "small", "medium", or "large"!
+getResolvedIconSize("medium");
+
+//////////////////////////////////// (video 88 & 89)
+
 type Alphabet =
   | "a"
   | "b"
