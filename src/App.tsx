@@ -2,40 +2,56 @@ import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 // import { expect, it } from "vitest";
-// import type { Expect, Equal } from "./helpers";
+import type { Expect, Equal } from "./helpers";
 import {
   SESSION_EXPIRATION_TIME,
   SESSION_EXPIRATION_TIME_IN_HOURS,
   SESSION_EXPIRATION_TIME_IN_MINUTES,
   SESSION_EXPIRATION_TIME_IN_SECONDS,
 } from "./dummy-import";
-import {
-  MAX_PAGE,
-  DEFAULT_COLOR,
-  DEFAULT_FILTER,
-  DEFAULT_PAGE,
-  DEFAULT_SORT,
-  DEFAULT_USERNAME,
-  FILTER_OPTIONS,
-} from "./dummy-import-2";
+// import {
+//   MAX_PAGE,
+//   DEFAULT_COLOR,
+//   DEFAULT_FILTER,
+//   DEFAULT_PAGE,
+//   DEFAULT_SORT,
+//   DEFAULT_USERNAME,
+//   FILTER_OPTIONS,
+// } from "./dummy-import-2";
+
+///// HANDLING NULL VALUES IN TYPE SCRIPT (video 81)
+
+function getUsername(username: string | null) {
+  if (username !== null) {
+    return `User: ${username}`;
+  } else {
+    return "Guest";
+  }
+}
+// TEST
+const result = getUsername("Alice");
+type test = Expect<Equal<typeof result, string>>;
+
+const result2 = getUsername(null);
+type test2 = Expect<Equal<typeof result2, string>>;
 
 // REFACTORING TO BE ITS OWN FUNCTION: (video 77)
+function getPercentage() {
+  return Math.random() * 100;
+}
+
 const func = () => {
   // Refactor this to be its own function
-  const randomPercentage = `${(Math.random() * 100).toFixed(2)}%`;
+  const randomPercentage = `${getPercentage().toFixed(2)}%`;
   console.log(randomPercentage);
 };
 
-function getRandomPercentage() {
-  return `${(Math.random() * 100).toFixed(2)}%`;
-}
-
 ///// ORGANISING IMPORTS COMMAND: Ctrl + Alt + o
-const handlePage = (page: number) => {
-  if (page > MAX_PAGE) {
-    console.log("Page is too large");
-  }
-};
+// const handlePage = (page: number) => {
+//   if (page > MAX_PAGE) {
+//     console.log("Page is too large");
+//   }
+// };
 
 type Task = {
   id: number;
