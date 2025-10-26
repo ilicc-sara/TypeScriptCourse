@@ -19,6 +19,30 @@ import {
 //   FILTER_OPTIONS,
 // } from "./dummy-import-2";
 
+// COMBINING UNION TYPES IN TYPE SCRIPT
+
+type HttpCode = "400" | "401" | "404" | "500" | "200" | "201" | "204";
+
+const handleErrorCase = (code: string) => {
+  // An imaginary function where we only handle the errors
+
+  type test = Expect<Equal<typeof code, "400" | "401" | "404" | "500">>;
+};
+
+const handleSuccessCase = (code: string) => {
+  // An imaginary function where we only handle the success cases
+
+  type test = Expect<Equal<typeof code, "200" | "201" | "204">>;
+};
+
+const handleAllCase = (code: HttpCode) => {
+  // An imaginary function where we handle all the cases
+
+  type test = Expect<
+    Equal<typeof code, "200" | "201" | "204" | "400" | "401" | "404" | "500">
+  >;
+};
+
 // RESTRICTING FUNCTION PARAMETERS (video 84)
 
 function move(direction: "up" | "down" | "left" | "right", distance: number) {
@@ -29,11 +53,7 @@ function move(direction: "up" | "down" | "left" | "right", distance: number) {
 move("up", 10);
 move("left", 5);
 
-move(
-  // @ts-expect-error - "up-right" is not a valid direction
-  "up-right",
-  10
-);
+// move("up-right", 10);
 
 move(
   // @ts-expect-error - "down-left" is not valid direction
