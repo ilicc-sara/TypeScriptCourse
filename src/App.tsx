@@ -19,17 +19,51 @@ import {
 //   FILTER_OPTIONS,
 // } from "./dummy-import-2";
 
+type Alphabet =
+  | "a"
+  | "b"
+  | "c"
+  | "d"
+  | "e"
+  | "f"
+  | "g"
+  | "h"
+  | "i"
+  | "j"
+  | "k"
+  | "l"
+  | "m"
+  | "n"
+  | "o"
+  | "p"
+  | "q"
+  | "r"
+  | "s"
+  | "t"
+  | "u"
+  | "v"
+  | "w"
+  | "x"
+  | "y"
+  | "z";
+
+type TooBig = string;
+
 // COMBINING UNION TYPES IN TYPE SCRIPT
 
-type HttpCode = "400" | "401" | "404" | "500" | "200" | "201" | "204";
+type ErrorCode = "400" | "401" | "404" | "500";
 
-const handleErrorCase = (code: string) => {
+type SuccessCode = "400" | "401" | "404" | "500" | "200" | "201" | "204";
+
+type HttpCode = ErrorCode | SuccessCode;
+
+const handleErrorCase = (code: ErrorCode) => {
   // An imaginary function where we only handle the errors
 
   type test = Expect<Equal<typeof code, "400" | "401" | "404" | "500">>;
 };
 
-const handleSuccessCase = (code: string) => {
+const handleSuccessCase = (code: SuccessCode) => {
   // An imaginary function where we only handle the success cases
 
   type test = Expect<Equal<typeof code, "200" | "201" | "204">>;
