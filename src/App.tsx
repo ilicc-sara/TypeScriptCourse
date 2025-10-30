@@ -1,196 +1,27 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
-// import { expect, it } from "vitest";
-import type { Expect, Equal } from "./helpers";
-import {
-  SESSION_EXPIRATION_TIME,
-  SESSION_EXPIRATION_TIME_IN_HOURS,
-  SESSION_EXPIRATION_TIME_IN_MINUTES,
-  SESSION_EXPIRATION_TIME_IN_SECONDS,
-} from "./dummy-import";
-// import {
-//   MAX_PAGE,
-//   DEFAULT_COLOR,
-//   DEFAULT_FILTER,
-//   DEFAULT_PAGE,
-//   DEFAULT_SORT,
-//   DEFAULT_USERNAME,
-//   FILTER_OPTIONS,
-// } from "./dummy-import-2";
+import { expect, it } from "vitest";
+// import type { Expect, Equal } from "./helpers";
+import type { Task } from "./types";
 
-// ////// Narrowing Unions with (91)
+function validateUsername(username: string | null): boolean {
+  // Rewrite this function to make the error go away
+  return username?.length > 5;
 
-const convertTime = (time: string | number | boolean) => {
-  if (typeof time === "string") {
-    console.log(time); // string
-  } else if (typeof time === "number") {
-    console.log(time); // number
-  } else {
-    console.log(time); // boolean
-  }
-
-  console.log(time); // string | number
-};
-
-// RESOLVING LITERAL TYPES TO WIDER TYPES (video 90)
-
-const getResolvedIconSize = (
-  iconSize: "small" | "medium" | "large" | (string & {})
-) => {
-  switch (iconSize) {
-    case "small":
-      return 16;
-    case "medium":
-      return 32;
-    case "large":
-      return 48;
-    default:
-      return iconSize;
-  }
-};
-
-// It doesn't give you autocomplete for "small", "medium", or "large"!
-getResolvedIconSize("medium");
-
-//////////////////////////////////// (video 88 & 89)
-
-type Alphabet =
-  | "a"
-  | "b"
-  | "c"
-  | "d"
-  | "e"
-  | "f"
-  | "g"
-  | "h"
-  | "i"
-  | "j"
-  | "k"
-  | "l"
-  | "m"
-  | "n"
-  | "o"
-  | "p"
-  | "q"
-  | "r"
-  | "s"
-  | "t"
-  | "u"
-  | "v"
-  | "w"
-  | "x"
-  | "y"
-  | "z";
-
-type TooBig = string;
-
-// COMBINING UNION TYPES IN TYPE SCRIPT
-
-type ErrorCode = "400" | "401" | "404" | "500";
-
-type SuccessCode = "400" | "401" | "404" | "500" | "200" | "201" | "204";
-
-type HttpCode = ErrorCode | SuccessCode;
-
-const handleErrorCase = (code: ErrorCode) => {
-  // An imaginary function where we only handle the errors
-
-  type test = Expect<Equal<typeof code, "400" | "401" | "404" | "500">>;
-};
-
-const handleSuccessCase = (code: SuccessCode) => {
-  // An imaginary function where we only handle the success cases
-
-  type test = Expect<Equal<typeof code, "200" | "201" | "204">>;
-};
-
-const handleAllCase = (code: HttpCode) => {
-  // An imaginary function where we handle all the cases
-
-  type test = Expect<
-    Equal<typeof code, "200" | "201" | "204" | "400" | "401" | "404" | "500">
-  >;
-};
-
-// RESTRICTING FUNCTION PARAMETERS (video 84)
-
-function move(direction: "up" | "down" | "left" | "right", distance: number) {
-  // Move the specified sidtance in the given direction
+  return false;
 }
 
-// TESTS
-move("up", 10);
-move("left", 5);
+it("should return true for valid usernames", () => {
+  expect(validateUsername("Matt1234")).toBe(true);
 
-// move("up-right", 10);
+  expect(validateUsername("Alice")).toBe(false);
+  expect(validateUsername("Bob")).toBe(false);
+});
 
-move(
-  // @ts-expect-error - "down-left" is not valid direction
-  "down-left",
-  10
-);
-
-///// HANDLING NULL VALUES IN TYPE SCRIPT (video 81)
-
-function getUsername(username: string | null) {
-  if (username !== null) {
-    return `User: ${username}`;
-  } else {
-    return "Guest";
-  }
-}
-// TEST
-const result = getUsername("Alice");
-type test = Expect<Equal<typeof result, string>>;
-
-const result2 = getUsername(null);
-type test2 = Expect<Equal<typeof result2, string>>;
-
-// REFACTORING TO BE ITS OWN FUNCTION: (video 77)
-function getPercentage() {
-  return Math.random() * 100;
-}
-
-const func = () => {
-  // Refactor this to be its own function
-  const randomPercentage = `${getPercentage().toFixed(2)}%`;
-  console.log(randomPercentage);
-};
-
-///// ORGANISING IMPORTS COMMAND: Ctrl + Alt + o
-// const handlePage = (page: number) => {
-//   if (page > MAX_PAGE) {
-//     console.log("Page is too large");
-//   }
-// };
-
-type Task = {
-  id: number;
-  text: string;
-};
-
-// const num: number = "some string";
-const num: number = 9;
-
-const run = (message: string) => {
-  console.log(message);
-};
-
-run("Hello!");
-// // CODE
-// const add = (a: number, b: number) => {
-//   return a + b;
-// };
-
-// //////////////////////////// FAST IMPORTS IN VS CODE (video 73)
-
-const expirationTimes = [
-  SESSION_EXPIRATION_TIME,
-  SESSION_EXPIRATION_TIME_IN_SECONDS,
-  SESSION_EXPIRATION_TIME_IN_MINUTES,
-  SESSION_EXPIRATION_TIME_IN_HOURS,
-];
+it("Should return false for null", () => {
+  expect(validateUsername(null)).toBe(false);
+});
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
