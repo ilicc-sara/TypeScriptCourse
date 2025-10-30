@@ -19,6 +19,20 @@ import {
 //   FILTER_OPTIONS,
 // } from "./dummy-import-2";
 
+// ////// Narrowing Unions with (91)
+
+const convertTime = (time: string | number | boolean) => {
+  if (typeof time === "string") {
+    console.log(time); // string
+  } else if (typeof time === "number") {
+    console.log(time); // number
+  } else {
+    console.log(time); // boolean
+  }
+
+  console.log(time); // string | number
+};
+
 // RESOLVING LITERAL TYPES TO WIDER TYPES (video 90)
 
 const getResolvedIconSize = (
