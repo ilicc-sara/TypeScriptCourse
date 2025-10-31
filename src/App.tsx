@@ -2,8 +2,20 @@ import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 import { expect, it } from "vitest";
-// import type { Expect, Equal } from "./helpers";
+import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
+
+// ///////////////// video 97
+
+const appElement = document.getElementById("app");
+
+// How do I ensure that app Element is defined?
+
+if (appElement) {
+  throw new Error("Could not find app element");
+}
+
+type Test = Expect<Equal<typeof appElement, HTMLElement>>;
 
 // ///////////////// video 96
 
