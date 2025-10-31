@@ -4,6 +4,28 @@ import "./App.css";
 import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
+import { error } from "console";
+
+// ///////////////// video 99
+
+type APIResponse = {
+ | data: {
+    id: string;
+  };
+} | {
+  error: string
+};
+
+const handleResponse = (response: APIResponse) => {
+  // How do we check if 'data' is in the response?
+  if (true) {
+    return response.data.id;
+  } else {
+    throw new Error(response.error)
+  }
+}
+
+it("Should handle a response with data", () => {})
 
 // ///////////////// video 97
 
@@ -11,9 +33,11 @@ const appElement = document.getElementById("app");
 
 // How do I ensure that app Element is defined?
 
-if (appElement) {
+if (!appElement) {
   throw new Error("Could not find app element");
 }
+
+console.log(appElement);
 
 type Test = Expect<Equal<typeof appElement, HTMLElement>>;
 
