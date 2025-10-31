@@ -7,9 +7,19 @@ import type { Task } from "./types";
 
 function validateUsername(username: string | null): boolean {
   // Rewrite this function to make the error go away
-  return username?.length > 5;
+  // if (username) {
+  //   return username.length > 5;
+  // }
+  // if (typeof username !== "string") {
+  //   return false;
+  // }
+  // return false;
 
-  return false;
+  if (typeof username === "object") {
+    return false;
+  }
+
+  return username.length > 5;
 }
 
 it("should return true for valid usernames", () => {
