@@ -5,6 +5,21 @@ import { expect, it } from "vitest";
 // import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 96
+
+type Event = {
+  message: string;
+};
+
+const processUserMap = (eventMap: Map<string, Event>) => {
+  const event = eventMap.get("error");
+  if (event) {
+    const message = event.message;
+
+    throw new Error(message);
+  }
+};
+
 // ///////////////// video 94
 
 function validateUsername(username: string | null): boolean {
