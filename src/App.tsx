@@ -5,7 +5,22 @@ import { expect, it } from "vitest";
 // import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 94
+
 function validateUsername(username: string | null): boolean {
+  // Why isn't this working?
+  const isUsernameOK = Boolean(username);
+
+  if (isUsernameOK) {
+    return username.length > 5;
+  }
+
+  return false;
+}
+
+// ///////////////// video 93
+
+function validateUsername1(username: string | null): boolean {
   // Rewrite this function to make the error go away
   // if (username) {
   //   return username.length > 5;
@@ -15,11 +30,19 @@ function validateUsername(username: string | null): boolean {
   // }
   // return false;
 
-  if (typeof username === "object") {
-    return false;
+  // if (typeof username === "object") {
+  //   return false;
+  // }
+
+  // return username.length > 5;
+
+  const isUsernameOK = typeof username === "string";
+
+  if (isUsernameOK) {
+    return username.length > 5;
   }
 
-  return username.length > 5;
+  return false;
 }
 
 it("should return true for valid usernames", () => {
