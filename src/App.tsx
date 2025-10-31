@@ -8,24 +8,34 @@ import { error } from "console";
 
 // ///////////////// video 99
 
-type APIResponse = {
- | data: {
-    id: string;
-  };
-} | {
-  error: string
-};
+type APIResponse =
+  | {
+      data: {
+        id: string;
+      };
+      error?: string;
+    }
+  | {
+      data?: undefined;
+      error: string;
+    };
 
 const handleResponse = (response: APIResponse) => {
   // How do we check if 'data' is in the response?
-  if (true) {
+  if ("data" in response) {
     return response.data.id;
   } else {
-    throw new Error(response.error)
+    throw new Error(response.error);
   }
-}
+};
 
-it("Should handle a response with data", () => {})
+it("Should handle a response with data", () => {
+  const response = {
+    data: {
+      id: "123",
+    },
+  };
+});
 
 // ///////////////// video 97
 
