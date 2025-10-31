@@ -9,7 +9,7 @@ import type { Task } from "./types";
 
 function validateUsername(username: string | null): boolean {
   // Why isn't this working?
-  const isUsernameOK = Boolean(username);
+  const isUsernameOK = !!username;
 
   if (isUsernameOK) {
     return username.length > 5;
