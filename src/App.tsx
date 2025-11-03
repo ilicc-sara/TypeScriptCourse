@@ -6,6 +6,25 @@ import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 import { error } from "console";
 
+// ///////////////// video 102
+
+const somethingDangerous = () => {
+  if (Math.random() > 0.5) {
+    throw new Error("Something went wrong");
+  }
+
+  return "all good";
+};
+
+try {
+  somethingDangerous();
+} catch (error) {
+  // How do we change this code to make it
+  // not show a red squiggly?
+
+  console.error(error.message);
+}
+
 // ///////////////// video 101
 
 const fn = (input: unknown) => {};
@@ -20,34 +39,34 @@ fn(() => {});
 
 // ///////////////// video 99
 
-type APIResponse =
-  | {
-      data: {
-        id: string;
-      };
-      error?: string;
-    }
-  | {
-      data?: undefined;
-      error: string;
-    };
+// type APIResponse =
+//   | {
+//       data: {
+//         id: string;
+//       };
+//       error?: string;
+//     }
+//   | {
+//       data?: undefined;
+//       error: string;
+//     };
 
-const handleResponse = (response: APIResponse) => {
-  // How do we check if 'data' is in the response?
-  if ("data" in response) {
-    return response.data.id;
-  } else {
-    throw new Error(response.error);
-  }
-};
+// const handleResponse = (response: APIResponse) => {
+//   // How do we check if 'data' is in the response?
+//   if ("data" in response) {
+//     return response.data.id;
+//   } else {
+//     throw new Error(response.error);
+//   }
+// };
 
-it("Should handle a response with data", () => {
-  const response = {
-    data: {
-      id: "123",
-    },
-  };
-});
+// it("Should handle a response with data", () => {
+//   const response = {
+//     data: {
+//       id: "123",
+//     },
+//   };
+// });
 
 // ///////////////// video 97
 
