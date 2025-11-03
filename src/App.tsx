@@ -19,10 +19,9 @@ const somethingDangerous = () => {
 try {
   somethingDangerous();
 } catch (error) {
-  // How do we change this code to make it
-  // not show a red squiggly?
-
-  console.error(error.message);
+  if (typeof error === "object" && error && "message" in error) {
+    console.error(error.message);
+  }
 }
 
 // ///////////////// video 101
@@ -36,117 +35,6 @@ fn(true);
 fn({});
 fn([]);
 fn(() => {});
-
-// ///////////////// video 99
-
-// type APIResponse =
-//   | {
-//       data: {
-//         id: string;
-//       };
-//       error?: string;
-//     }
-//   | {
-//       data?: undefined;
-//       error: string;
-//     };
-
-// const handleResponse = (response: APIResponse) => {
-//   // How do we check if 'data' is in the response?
-//   if ("data" in response) {
-//     return response.data.id;
-//   } else {
-//     throw new Error(response.error);
-//   }
-// };
-
-// it("Should handle a response with data", () => {
-//   const response = {
-//     data: {
-//       id: "123",
-//     },
-//   };
-// });
-
-// ///////////////// video 97
-
-const appElement = document.getElementById("app");
-
-// How do I ensure that app Element is defined?
-
-if (!appElement) {
-  throw new Error("Could not find app element");
-}
-
-console.log(appElement);
-
-type Test = Expect<Equal<typeof appElement, HTMLElement>>;
-
-// ///////////////// video 96
-
-type Event = {
-  message: string;
-};
-
-const processUserMap = (eventMap: Map<string, Event>) => {
-  const event = eventMap.get("error");
-  if (event) {
-    const message = event.message;
-
-    throw new Error(message);
-  }
-};
-
-// ///////////////// video 94
-
-function validateUsername(username: string | null): boolean {
-  // Why isn't this working?
-  const isUsernameOK = !!username;
-
-  if (isUsernameOK) {
-    return username.length > 5;
-  }
-
-  return false;
-}
-
-// ///////////////// video 93
-
-function validateUsername1(username: string | null): boolean {
-  // Rewrite this function to make the error go away
-  // if (username) {
-  //   return username.length > 5;
-  // }
-  // if (typeof username !== "string") {
-  //   return false;
-  // }
-  // return false;
-
-  // if (typeof username === "object") {
-  //   return false;
-  // }
-
-  // return username.length > 5;
-
-  const isUsernameOK = typeof username === "string";
-
-  if (isUsernameOK) {
-    return username.length > 5;
-  }
-
-  return false;
-}
-
-it("should return true for valid usernames", () => {
-  expect(validateUsername("Matt1234")).toBe(true);
-
-  expect(validateUsername("Alice")).toBe(false);
-  expect(validateUsername("Bob")).toBe(false);
-});
-
-it("Should return false for null", () => {
-  expect(validateUsername(null)).toBe(false);
-});
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function App() {
