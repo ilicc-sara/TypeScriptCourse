@@ -6,6 +6,36 @@ import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 import { error } from "console";
 
+// ///////////////// video 104  NARROWING UNKNOWN IN A LARGE CONDITIONAL STATEMENT
+
+const parseValue = (value: unknown) => {
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    "data" in value &&
+    typeof value.data === "object" &&
+    value.data !== null &&
+    "id" in value.data &&
+    typeof value.data.id === "string"
+  ) {
+    return value.data.id;
+  }
+
+  throw new Error("Parsing error!");
+};
+
+it("Should handle a { data: { id: string} } }", () => {
+  const result = parseValue({
+    data: {
+      id: "123",
+    },
+  });
+
+  type test = Expect<Equal<typeof result, string>>;
+
+  expect(result).toBe("123");
+});
+
 // ///////////////// video 102
 
 const somethingDangerous = () => {
