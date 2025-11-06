@@ -5,6 +5,21 @@ import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 107
+
+type ShoppingCart = {
+  items: string[];
+};
+
+const shoppingCart: ShoppingCart = {
+  items: [],
+};
+
+console.log(shoppingCart.items);
+
+shoppingCart.items.push("Apple");
+shoppingCart.items.push("Banana");
+
 // ///////////////// video 106
 
 // This function returns never, because it never returns!
@@ -14,19 +29,19 @@ const getNever = () => {
 
 // --------------------------------------------------------------------
 
-const fn = (input: never) => {};
+// const fn = (input: never) => {};
 
 // Nothing is assignable to never!
-fn("hello");
-fn(42);
-fn(true);
-fn({});
-fn([]);
-fn(() => {});
+// fn("hello");
+// fn(42);
+// fn(true);
+// fn({});
+// fn([]);
+// fn(() => {});
 
 // Except for never itself!
 
-fn(getNever());
+// fn(getNever());
 
 // --------------------------------------------------------------------
 
