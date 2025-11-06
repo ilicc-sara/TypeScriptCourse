@@ -5,6 +5,22 @@ import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 109
+
+const throwError = (message: string): never => {
+  throw new Error(message);
+};
+
+type Example = string | never;
+
+const handleSearchParams = (params: { id?: string }) => {
+  const id = params.id || throwError("No id provided");
+
+  type test = Expect<Equal<typeof id, string>>;
+
+  return id;
+};
+
 // ///////////////// video 107
 
 type ShoppingCart = {
