@@ -5,7 +5,48 @@ import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
-// ///////////////// video 109
+// ///////////////// video 111
+
+const findUsersByName = (
+  searchParams: { name?: string },
+  users: {
+    id: string;
+    name: string;
+  }[]
+) => {
+  if (searchParams.name) {
+    return users.filter((user) => user.name.includes(searchParams.name));
+  }
+
+  return users;
+};
+
+it("Should find the exact name", () => {
+  const result = findUsersByName(
+    {
+      name: "Bob",
+    },
+    [
+      {
+        id: "1",
+        name: "Bob",
+      },
+      {
+        id: "2",
+        name: "Alice",
+      },
+    ]
+  );
+});
+
+expect(result).toEqual([
+  {
+    id: "1",
+    name: "Bob",
+  },
+]);
+
+// ////////////////////////////////////////////////////////////////////////////
 
 const throwError = (message: string): never => {
   throw new Error(message);
