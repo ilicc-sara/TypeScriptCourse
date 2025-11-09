@@ -4,47 +4,82 @@ import "./App.css";
 import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
+// ///////////////// video 113
+
+type Shape = {
+  kind: string;
+  radius?: number;
+  sideLength?: number;
+};
+
+function calculateArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius * shape.radius;
+  } else {
+    return shape.sideLength * shape.sideLength;
+  }
+}
+
+it("Should calculate the area of a circle", () => {
+  const result = calculateArea({
+    kind: "circle",
+    radius: 5,
+  });
+
+  expect(result).toBe(78.53981633974483);
+
+  type test = Expect<Equal<typeof result, number>>;
+});
+
+it("Should calculate the area of a square", () => {
+  const result = calculateArea({
+    kind: "square",
+    sideLength: 5,
+  });
+});
 
 // ///////////////// video 111
 
-const findUsersByName = (
-  searchParams: { name?: string },
-  users: {
-    id: string;
-    name: string;
-  }[]
-) => {
-  if (searchParams.name) {
-    return users.filter((user) => user.name.includes(searchParams.name));
-  }
+// const findUsersByName = (
+//   searchParams: { name?: string },
+//   users: {
+//     id: string;
+//     name: string;
+//   }[]
+// ) => {
+//   if (searchParams.name) {
+//     return users.filter((user) => user.name.includes(searchParams.name));
+//   }
 
-  return users;
-};
+//   return users;
+// };
 
-it("Should find the exact name", () => {
-  const result = findUsersByName(
-    {
-      name: "Bob",
-    },
-    [
-      {
-        id: "1",
-        name: "Bob",
-      },
-      {
-        id: "2",
-        name: "Alice",
-      },
-    ]
-  );
-});
+// it("Should find the exact name", () => {
+//   const result = findUsersByName(
+//     {
+//       name: "Bob",
+//     },
+//     [
+//       {
+//         id: "1",
+//         name: "Bob",
+//       },
+//       {
+//         id: "2",
+//         name: "Alice",
+//       },
+//     ]
+//   );
 
-expect(result).toEqual([
-  {
-    id: "1",
-    name: "Bob",
-  },
-]);
+//   expect(result).toEqual([
+//     {
+//       id: "1",
+//       name: "Bob",
+//     },
+//   ]);
+
+//   type test = Expect<Equal<typeof result, { id: string; name: string }[]>>;
+// });
 
 // ////////////////////////////////////////////////////////////////////////////
 
