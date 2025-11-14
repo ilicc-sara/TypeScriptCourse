@@ -6,43 +6,43 @@ import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 // ///////////////// video 113
 
-type Circle = {
-  type: "circle";
-  radius?: number;
-};
+// type Circle = {
+//   kind: "circle";
+//   radius?: number;
+// };
 
-type Square = {
-  kind: "square";
-  sideLength: number;
-};
+// type Square = {
+//   kind: "square";
+//   sideLength: number;
+// };
 
-type Shape = Circle | Square;
+// type Shape = Circle | Square;
 
-function calculateArea(shape: Shape) {
-  if (shape.kind === "circle") {
-    Math.PI * shape.radius * shape.radius;
-  } else {
-    shape.sideLength * shape.sideLength;
-  }
-}
+// function calculateArea(shape: Shape) {
+//   if (shape.kind === "circle") {
+//     Math.PI * shape.radius * shape.radius;
+//   } else {
+//     shape.sideLength * shape.sideLength;
+//   }
+// }
 
-it("Should calculate the area of a circle", () => {
-  const result = calculateArea({
-    kind: "circle",
-    radius: 5,
-  });
+// it("Should calculate the area of a circle", () => {
+//   const result = calculateArea({
+//     kind: "circle",
+//     radius: 5,
+//   });
 
-  expect(result).toBe(78.53981633974483);
+//   expect(result).toBe(78.53981633974483);
 
-  type test = Expect<Equal<typeof result, number>>;
-});
+//   type test = Expect<Equal<typeof result, number>>;
+// });
 
-it("Should calculate the area of a square", () => {
-  const result = calculateArea({
-    kind: "square",
-    sideLength: 5,
-  });
-});
+// it("Should calculate the area of a square", () => {
+//   const result = calculateArea({
+//     kind: "square",
+//     sideLength: 5,
+//   });
+// });
 
 // ///////////////// video 111
 
