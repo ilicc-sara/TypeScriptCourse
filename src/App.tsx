@@ -4,6 +4,26 @@ import "./App.css";
 import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
+// ///////////////// video 122
+
+type User = {
+  id: string;
+};
+
+type ApiResponse = [boolean, User[] | string];
+
+async function fetchData(): Promise<ApiResponse> {
+  try {
+    const response = await fetch("https://api.example.com/data");
+
+    if (!response.ok) {
+      return {
+      
+      }
+    }
+  }
+}
+
 // ///////////////// video 113
 
 // type Circle = {
