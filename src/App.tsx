@@ -6,17 +6,23 @@ import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 // ///////////////// video 113
 
-type Shape = {
-  kind: string;
+type Circle = {
+  type: "circle";
   radius?: number;
-  sideLength?: number;
 };
+
+type Square = {
+  kind: "square";
+  sideLength: number;
+};
+
+type Shape = Circle | Square;
 
 function calculateArea(shape: Shape) {
   if (shape.kind === "circle") {
-    return Math.PI * shape.radius * shape.radius;
+    Math.PI * shape.radius * shape.radius;
   } else {
-    return shape.sideLength * shape.sideLength;
+    shape.sideLength * shape.sideLength;
   }
 }
 
