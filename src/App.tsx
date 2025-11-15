@@ -4,6 +4,29 @@ import "./App.css";
 import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
+
+// ///////////////// video 124
+
+type Circle = {
+  kind: "circle";
+  radius: number
+};
+
+type Square = {
+  kind: "square";
+  sideLength: number;
+};
+
+type Shape = Circle | Square;
+
+function calculateArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius * shape.radius
+  }
+}
+
+
+
 // ///////////////// video 122
 
 type User = {
@@ -12,13 +35,13 @@ type User = {
 
 type ApiResponse = [true, User[] [false, string]];
 
-async function fetchData(): Promise<ApiResponse> {
+async function fetchData(): Promise<ApiResponse>  {
   try {
     const response = await fetch("https://api.example.com/data");
 
     if (!response.ok) {
       return [
-        false, 
+        true, 
         // Imagine more detailed error handling here
         "An error occured",
       ]
