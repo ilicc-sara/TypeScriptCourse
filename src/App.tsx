@@ -7,47 +7,45 @@ import type { Task } from "./types";
 
 // ///////////////// video 124
 
-type Circle = {
-  kind: "circle";
-  radius: number
-};
+// type Circle = {
+//   kind: "circle";
+//   radius: number
+// };
 
-type Square = {
-  kind: "square";
-  sideLength: number;
-};
+// type Square = {
+//   kind: "square";
+//   sideLength: number;
+// };
 
-type Shape = Circle | Square;
+// type Shape = Circle | Square;
 
-function calculateArea(shape: Shape) {
-  if (shape.kind === "circle") {
-    return Math.PI * shape.radius * shape.radius
-  }
-}
+// function calculateArea(shape: Shape) {
+//   if (shape.kind === "circle") {
+//     return Math.PI * shape.radius * shape.radius
+//   }
+// }
 
+// // ///////////////// video 122
 
+// type User = {
+//   id: string;
+// };
 
-// ///////////////// video 122
+// type ApiResponse = [true, User[] [false, string]];
 
-type User = {
-  id: string;
-};
+// async function fetchData(): Promise<ApiResponse>  {
+//   try {
+//     const response = await fetch("https://api.example.com/data");
 
-type ApiResponse = [true, User[] [false, string]];
-
-async function fetchData(): Promise<ApiResponse>  {
-  try {
-    const response = await fetch("https://api.example.com/data");
-
-    if (!response.ok) {
-      return [
-        true, 
-        // Imagine more detailed error handling here
-        "An error occured",
-      ]
-    }
-  }
-}
+//     if (!response.ok) {
+//       return [
+//         true,
+//         // Imagine more detailed error handling here
+//         "An error occured",
+//       ]
+//     }
+//   }
+// }
 
 // ///////////////// video 113
 
