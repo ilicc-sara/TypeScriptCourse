@@ -5,6 +5,30 @@ import { expect, it } from "vitest";
 import type { Expect, Equal } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 127
+
+type A = {
+  a: string;
+};
+
+type B = {
+  b: string;
+};
+
+type AandB = A & B;
+
+type User = {
+  id: string;
+  createdAt: Date;
+  name: string;
+  email: string;
+};
+
+type Product = {
+  id: string;
+  createdAt: Date;
+};
+
 // ///////////////// video 124
 
 // type Circle = {
