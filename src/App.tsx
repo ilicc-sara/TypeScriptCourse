@@ -7,6 +7,11 @@ import type { Task } from "./types";
 
 // ///////////////// video 127
 
+type BaseEntity = {
+  id: string;
+  createdAt: Date;
+};
+
 type A = {
   a: string;
 };
