@@ -12,29 +12,15 @@ type BaseEntity = {
   createdAt: Date;
 };
 
-type A = {
-  a: string;
-};
-
-type B = {
-  b: string;
-};
-
-type AandB = A & B;
-
 type User = {
-  id: string;
-  createdAt: Date;
   name: string;
   email: string;
-};
+} & BaseEntity;
 
 type Product = {
-  id: string;
-  createdAt: Date;
   name: string;
   price: number;
-};
+} & BaseEntity;
 
 type tests = [
   Expect<
