@@ -2,25 +2,25 @@ import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import "./App.css";
 import { expect, it } from "vitest";
-import type { Expect, Equal } from "./helpers";
+import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
-// ///////////////// video 127
+// ///////////////// video 129
 
-type BaseEntity = {
+interface BaseEntity {
   id: string;
   createdAt: Date;
-};
+}
 
-type User = {
+interface User extends BaseEntity {
   name: string;
   email: string;
-} & BaseEntity;
+}
 
-type Product = {
+interface Product extends BaseEntity {
   name: string;
   price: number;
-} & BaseEntity;
+}
 
 type tests = [
   Expect<
@@ -46,6 +46,48 @@ type tests = [
     >
   >
 ];
+
+// ///////////////// video 127
+
+// type BaseEntity = {
+//   id: string;
+//   createdAt: Date;
+// };
+
+// type User = {
+//   name: string;
+//   email: string;
+// } & BaseEntity;
+
+// type Product = {
+//   name: string;
+//   price: number;
+// } & BaseEntity;
+
+// type tests = [
+//   Expect<
+//     Extends<
+//       User,
+//       {
+//         id: string;
+//         createdAt: Date;
+//         name: string;
+//         email: string;
+//       }
+//     >
+//   >,
+//   Expect<
+//     Extends<
+//       Product,
+//       {
+//         id: string;
+//         createdAt: Date;
+//         name: string;
+//         price: number;
+//       }
+//     >
+//   >
+// ];
 
 // ///////////////// video 124
 
