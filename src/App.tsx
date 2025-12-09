@@ -5,47 +5,69 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 131
+
+type UserPart = {
+  id: string;
+  name: string;
+  age: number;
+};
+
+type UsePart2 = {
+  id: number;
+  phone: string;
+};
+
+type User = UserPart & UsePart2;
+
+const user: User = {
+  id: "1",
+  name: "John",
+  age: 20,
+  phone: "123456789",
+};
+
 // ///////////////// video 129
 
-interface BaseEntity {
-  id: string;
-  createdAt: Date;
-}
+// interface BaseEntity {
+//   id: string;
+//   createdAt: Date;
+// }
 
-interface User extends BaseEntity {
-  name: string;
-  email: string;
-}
+// interface User extends BaseEntity {
+//   name: string;
+//   email: string;
+// }
 
-interface Product extends BaseEntity {
-  name: string;
-  price: number;
-}
+// interface Product extends BaseEntity {
+//   name: string;
+//   price: number;
+// }
 
-type tests = [
-  Expect<
-    Extends<
-      User,
-      {
-        id: string;
-        createdAt: Date;
-        name: string;
-        email: string;
-      }
-    >
-  >,
-  Expect<
-    Extends<
-      Product,
-      {
-        id: string;
-        createdAt: Date;
-        name: string;
-        price: number;
-      }
-    >
-  >
-];
+// type tests = [
+//   Expect<
+//     Extends<
+//       User,
+//       {
+//         id: string;
+//         createdAt: Date;
+//         name: string;
+//         email: string;
+//       }
+//     >
+//   >,
+//   Expect<
+//     Extends<
+//       Product,
+//       {
+//         id: string;
+//         createdAt: Date;
+//         name: string;
+//         price: number;
+//       }
+//     >
+//   >
+// ];
 
 // ///////////////// video 127
 
