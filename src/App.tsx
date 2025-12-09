@@ -7,18 +7,18 @@ import type { Task } from "./types";
 
 // ///////////////// video 131
 
-type UserPart = {
+interface UserPart {
   id: string;
   name: string;
   age: number;
-};
+}
 
-type UsePart2 = {
+interface UsePart2 {
   id: number;
   phone: string;
-};
+}
 
-type User = UserPart & UsePart2;
+interface User extends UserPart, UsePart2;
 
 const user: User = {
   id: "1",
