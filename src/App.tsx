@@ -5,27 +5,42 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 134
+
+// interface Scores {
+//   [subject: string]: number;
+// }
+
+// const scores: Scores = {};
+
+// const scores: { [key: string]: number } = {};
+const scores: Record<string, number> = {};
+
+scores.math = 95;
+scores.english = 90;
+scores.science = 85;
+
 // ///////////////// video 131
 
-interface UserPart {
-  id: string;
-  name: string;
-  age: number;
-}
+// interface UserPart {
+//   id: string;
+//   name: string;
+//   age: number;
+// }
 
-interface UsePart2 {
-  id: number;
-  phone: string;
-}
+// interface UsePart2 {
+//   id: number;
+//   phone: string;
+// }
 
-interface User extends UserPart, UsePart2;
+// interface User extends UserPart, UsePart2 {}
 
-const user: User = {
-  id: "1",
-  name: "John",
-  age: 20,
-  phone: "123456789",
-};
+// const user: User = {
+//   id: "1",
+//   name: "John",
+//   age: 20,
+//   phone: "123456789",
+// };
 
 // ///////////////// video 129
 
