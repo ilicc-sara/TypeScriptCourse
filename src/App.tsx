@@ -5,6 +5,25 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 136
+
+interface Scores {
+  [subject: string]: number;
+  math: number;
+  english: number;
+  science: number;
+}
+
+// @ts-expect-error science is missing!
+const scores: Scores = {
+  math: 95,
+  english: 90,
+};
+
+scores.athletics = 100;
+scores.french = 75;
+scores.spanish = 70;
+
 // ///////////////// video 134
 
 // interface Scores {
@@ -14,11 +33,11 @@ import type { Task } from "./types";
 // const scores: Scores = {};
 
 // const scores: { [key: string]: number } = {};
-const scores: Record<string, number> = {};
+// const scores: Record<string, number> = {};
 
-scores.math = 95;
-scores.english = 90;
-scores.science = 85;
+// scores.math = 95;
+// scores.english = 90;
+// scores.science = 85;
 
 // ///////////////// video 131
 
