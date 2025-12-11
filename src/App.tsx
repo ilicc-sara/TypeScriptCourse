@@ -5,6 +5,28 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 138
+
+const hasKey = (obj: object, key: string) => {
+  return obj.hasOwnProperty(key);
+};
+
+it("Should work on string keys", () => {
+  const obj = {
+    foo: "bar",
+  };
+
+  expect(hasKey(obj, "foo")).toBe(true);
+  expect(hasKey(obj, "bar")).toBe(false);
+});
+
+it("Should work on number keys", () => {
+  const obj = {
+    1: "bar",
+    2: "foo",
+  };
+});
+
 // ///////////////// video 136
 
 interface Scores {
