@@ -23,8 +23,15 @@ it("Should work on string keys", () => {
 it("Should work on number keys", () => {
   const obj = {
     1: "bar",
-    2: "foo",
   };
+
+  expect(hasKey(obj, 1)).toBe(true);
+  expect(hasKey(obj, 2)).toBe(false);
+});
+
+it("Should work on symbol keys", () => {
+  const fooSymbol = Symbol("foo");
+  const barSymbol = Symbol("bar");
 });
 
 // ///////////////// video 136
