@@ -5,34 +5,59 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 140
+
+type Configurations = unknown;
+
+const configurations: Configurations = {
+  development: {
+    apiBaseUrl: "http://localhost:8080",
+    timeout: 5000,
+  },
+  production: {
+    apiBaseUrl: "https://api.example.com",
+    timeout: 10000,
+  },
+  staging: {
+    apiBaseUrl: "https://staging.example.com",
+    timeout: 8000,
+  },
+  // @ts-expect-error
+  notAllowed: {
+    apiBaseUrl: "https://staging.example.com",
+    timeout: 8000,
+  },
+};
+
 // ///////////////// video 138
 
-// const hasKey = (obj: object, key: string) => {
-//   return obj.hasOwnProperty(key);
-// };
+// const hasKey = (obj: object, key: string | number | symbol) => {
+const hasKey = (obj: object, key: PropertyKey) => {
+  return obj.hasOwnProperty(key);
+};
 
-// it("Should work on string keys", () => {
-//   const obj = {
-//     foo: "bar",
-//   };
+it("Should work on string keys", () => {
+  const obj = {
+    foo: "bar",
+  };
 
-//   expect(hasKey(obj, "foo")).toBe(true);
-//   expect(hasKey(obj, "bar")).toBe(false);
-// });
+  expect(hasKey(obj, "foo")).toBe(true);
+  expect(hasKey(obj, "bar")).toBe(false);
+});
 
-// it("Should work on number keys", () => {
-//   const obj = {
-//     1: "bar",
-//   };
+it("Should work on number keys", () => {
+  const obj = {
+    1: "bar",
+  };
 
-//   expect(hasKey(obj, 1)).toBe(true);
-//   expect(hasKey(obj, 2)).toBe(false);
-// });
+  expect(hasKey(obj, 1)).toBe(true);
+  expect(hasKey(obj, 2)).toBe(false);
+});
 
-// it("Should work on symbol keys", () => {
-//   const fooSymbol = Symbol("foo");
-//   const barSymbol = Symbol("bar");
-// });
+it("Should work on symbol keys", () => {
+  const fooSymbol = Symbol("foo");
+  const barSymbol = Symbol("bar");
+});
 
 // ///////////////// video 136
 
