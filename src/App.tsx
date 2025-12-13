@@ -7,7 +7,22 @@ import type { Task } from "./types";
 
 // ///////////////// video 140
 
-type Configurations = unknown;
+type Environment = "development" | "production" | "staging" | "qa";
+
+// type Configurations = Record<
+//   string,
+//   {
+//     apiBaseUrl: string;
+//     timeout: number;
+//   }
+// >;
+
+type Configurations = {
+  [Env in Environment]: {
+    apiBaseUrl: string;
+    timeout: number;
+  };
+};
 
 const configurations: Configurations = {
   development: {
