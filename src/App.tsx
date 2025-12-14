@@ -5,6 +5,28 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 142
+
+interface Logger {
+  log(message: string, level: number): void;
+}
+
+interface Logger {
+  log(message: string): void;
+}
+
+const myLogger: Logger = {
+  log: (message: string) => {
+    console.log(message);
+  },
+};
+
+myLogger.log(
+  "My message",
+  // @ts-expect-error level is NOT needed
+  123
+);
+
 // ///////////////// video 140
 
 type Environment = "development" | "production" | "staging" | "qa";
