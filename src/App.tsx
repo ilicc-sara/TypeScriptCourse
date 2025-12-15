@@ -7,14 +7,35 @@ import type { Task } from "./types";
 
 // ///////////////// video 144
 
-interface User {
-  id: string;
+// interface User {
+//   id: string;
+//   name: string;
+//   email: string;
+//   role: string;
+// }
+
+// const fetchUser = async (): Promise<User> => {
+//   const response = await fetch("/api/user");
+//   const user = await response.json();
+//   return user;
+// };
+
+// const example = async () => {
+//   const user = await fetchUser();
+
+//   type test = Expect<Equal<typeof user, { name: string; email: string }>>;
+// };
+interface NameAndEmail {
   name: string;
   email: string;
+}
+
+interface User extends NameAndEmail {
+  id: string;
   role: string;
 }
 
-const fetchUser = async (): Promise<User> => {
+const fetchUser = async (): Promise<NameAndEmail> => {
   const response = await fetch("/api/user");
   const user = await response.json();
   return user;
@@ -22,6 +43,8 @@ const fetchUser = async (): Promise<User> => {
 
 const example = async () => {
   const user = await fetchUser();
+
+  type test = Expect<Equal<typeof user, { name: string; email: string }>>;
 };
 
 // ///////////////// video 142
