@@ -5,27 +5,46 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
-// ///////////////// video 142
+// ///////////////// video 144
 
-interface Logger {
-  log(message: string, level: number): void;
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
 }
 
-interface Logger {
-  log(message: string): void;
-}
-
-const myLogger: Logger = {
-  log: (message: string) => {
-    console.log(message);
-  },
+const fetchUser = async (): Promise<User> => {
+  const response = await fetch("/api/user");
+  const user = await response.json();
+  return user;
 };
 
-myLogger.log(
-  "My message",
-  // @ts-expect-error level is NOT needed
-  123
-);
+const example = async () => {
+  const user = await fetchUser();
+};
+
+// ///////////////// video 142
+
+// interface Logger {
+//   log(message: string, level: number): void;
+// }
+
+// interface Logger {
+//   log(message: string): void;
+// }
+
+// const myLogger: Logger = {
+//   log: (message: string) => {
+//     console.log(message);
+//   },
+// };
+
+// myLogger.log(
+//   "My message",
+//   // @ts-expect-error level is NOT needed
+//   123
+// );
 
 // ///////////////// video 140
 
