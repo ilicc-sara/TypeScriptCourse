@@ -5,6 +5,27 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 146
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+}
+
+const assProduct = (productInfo: Product) => {
+  // Do something with the productInfo
+};
+
+addProduct({
+  name: "Book",
+  price: 12.99,
+  description: "A book about Dragons",
+});
+
+addProduct({});
+
 // ///////////////// video 144
 
 // interface User {
