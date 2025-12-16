@@ -24,7 +24,13 @@ addProduct({
   description: "A book about Dragons",
 });
 
-addProduct({});
+addProduct({
+  // @ts-expect-error
+  id: 1,
+  name: "Book",
+  price: 12.99,
+  description: "A book about Dragons",
+});
 
 // ///////////////// video 144
 
