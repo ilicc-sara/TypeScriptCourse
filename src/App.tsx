@@ -5,6 +5,26 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 148
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+// You can omit properties which don't exist!
+type UserWithoutPhoneNumber = Omit<User, "phoneNumber">;
+
+// But you CAN'T pick properties which don't exist
+type UserWithOnlyPhoneNumber = Pick<
+  User,
+  // @ts-expect-error
+  "phoneNumber"
+>;
+
+// More information:
+
 // ///////////////// video 146
 
 interface Product {
@@ -77,26 +97,26 @@ addProduct({
 //   type test = Expect<Equal<typeof user, { name: string; email: string }>>;
 // };
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
+// interface User {
+//   id: string;
+//   name: string;
+//   email: string;
+//   role: string;
+// }
 
-type PickedUser = Pick<User, "name" | "email">;
+// type PickedUser = Pick<User, "name" | "email">;
 
-const fetchUser = async (): Promise<PickedUser> => {
-  const response = await fetch("/api/user");
-  const user = await response.json();
-  return user;
-};
+// const fetchUser = async (): Promise<PickedUser> => {
+//   const response = await fetch("/api/user");
+//   const user = await response.json();
+//   return user;
+// };
 
-const example = async () => {
-  const user = await fetchUser();
+// const example = async () => {
+//   const user = await fetchUser();
 
-  type test = Expect<Equal<typeof user, { name: string; email: string }>>;
-};
+//   type test = Expect<Equal<typeof user, { name: string; email: string }>>;
+// };
 
 // ///////////////// video 142
 
