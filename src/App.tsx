@@ -5,54 +5,74 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
-// ///////////////// video 148
+// ///////////////// video 149
 
 type User = {
-  id: number;
+  id: string;
   name: string;
-  email: string;
+  age: number;
+  imageId: string;
 };
 
-// You can omit properties which don't exist!
-type UserWithoutPhoneNumber = Omit<User, "phoneNumber">;
+type Organisation = {
+  id: string;
+  name: string;
+  address: string;
+  imageId: string;
+};
 
-// But you CAN'T pick properties which don't exist
-type UserWithOnlyPhoneNumber = Pick<
-  User,
-  // @ts-expect-error
-  "phoneNumber"
->;
+type Product = {
+  id: string;
+};
+
+// ///////////////// video 148
+
+// type User = {
+//   id: number;
+//   name: string;
+//   email: string;
+// };
+
+// // You can omit properties which don't exist!
+// type UserWithoutPhoneNumber = Omit<User, "phoneNumber">;
+
+// // But you CAN'T pick properties which don't exist
+// type UserWithOnlyPhoneNumber = Pick<
+//   User,
+//   // @ts-expect-error
+//   "phoneNumber"
+// >;
 
 // More information:
 
 // ///////////////// video 146
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   price: number;
+//   description: string;
+// }
 
-type ProductWithoutId = Omit<Product, "id">;
+// type ProductWithoutId = Omit<Product, "id">;
 
-const addProduct = (productInfo: Omit<Product, "id">) => {
-  // Do something with the productInfo
-};
+// const addProduct = (productInfo: Omit<Product, "id">) => {
+//   // Do something with the productInfo
+// };
 
-addProduct({
-  name: "Book",
-  price: 12.99,
-  description: "A book about Dragons",
-});
+// addProduct({
+//   name: "Book",
+//   price: 12.99,
+//   description: "A book about Dragons",
+// });
 
-addProduct({
-  // @ts-expect-error
-  id: 1,
-  name: "Book",
-  price: 12.99,
-  description: "A book about Dragons",
-});
+// addProduct({
+//   // @ts-expect-error
+//   id: 1,
+//   name: "Book",
+//   price: 12.99,
+//   description: "A book about Dragons",
+// });
 
 // ///////////////// video 144
 
