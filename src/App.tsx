@@ -31,6 +31,28 @@ type Product = {
 type Entity = User | Organisation | Product;
 
 type EntityWithoutId = Omit<Entity, "id">;
+// ? type EntityWithoutId = {  name: string;  imageId: string;  }
+
+type test = Expect<
+  Equal<
+    EntityWithoutId,
+    | {
+        name: string;
+        age: number;
+        imageId: string;
+      }
+    | {
+        name: string;
+        address: string;
+        imageId: string;
+      }
+    | {
+        name: string;
+        price: number;
+        imageId: string;
+      }
+  >
+>;
 
 // ///////////////// video 148
 
