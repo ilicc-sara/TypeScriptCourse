@@ -23,7 +23,14 @@ type Organisation = {
 
 type Product = {
   id: string;
+  name: string;
+  price: number;
+  imageId: string;
 };
+
+type Entity = User | Organisation | Product;
+
+type EntityWithoutId = Omit<Entity, "id">;
 
 // ///////////////// video 148
 
