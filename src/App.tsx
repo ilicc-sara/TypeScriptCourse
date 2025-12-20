@@ -14,7 +14,10 @@ interface Product {
   description: string;
 }
 
-const updateProduct = (id: number, productInfo: Omit<Product, "id">) => {
+const updateProduct = (
+  id: number,
+  productInfo: Partial<Omit<Product, "id">>
+) => {
   // Do something with the productInfo
 };
 
@@ -33,52 +36,52 @@ updateProduct(1, {
 
 // ///////////////// video 149
 
-type User = {
-  id: string;
-  name: string;
-  age: number;
-  imageId: string;
-};
+// type User = {
+//   id: string;
+//   name: string;
+//   age: number;
+//   imageId: string;
+// };
 
-type Organisation = {
-  id: string;
-  name: string;
-  address: string;
-  imageId: string;
-};
+// type Organisation = {
+//   id: string;
+//   name: string;
+//   address: string;
+//   imageId: string;
+// };
 
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  imageId: string;
-};
+// type Product = {
+//   id: string;
+//   name: string;
+//   price: number;
+//   imageId: string;
+// };
 
-type Entity = User | Organisation | Product;
+// type Entity = User | Organisation | Product;
 
-type EntityWithoutId = Omit<Entity, "id">;
-// ? type EntityWithoutId = {  name: string;  imageId: string;  }
+// type EntityWithoutId = Omit<Entity, "id">;
+// // ? type EntityWithoutId = {  name: string;  imageId: string;  }
 
-type test = Expect<
-  Equal<
-    EntityWithoutId,
-    | {
-        name: string;
-        age: number;
-        imageId: string;
-      }
-    | {
-        name: string;
-        address: string;
-        imageId: string;
-      }
-    | {
-        name: string;
-        price: number;
-        imageId: string;
-      }
-  >
->;
+// type test = Expect<
+//   Equal<
+//     EntityWithoutId,
+//     | {
+//         name: string;
+//         age: number;
+//         imageId: string;
+//       }
+//     | {
+//         name: string;
+//         address: string;
+//         imageId: string;
+//       }
+//     | {
+//         name: string;
+//         price: number;
+//         imageId: string;
+//       }
+//   >
+// >;
 
 // ///////////////// video 148
 
