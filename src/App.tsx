@@ -5,6 +5,47 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 153
+
+type User = {
+  id: string;
+  name: string;
+  age: number;
+  imageId: string;
+};
+
+type Organisation = {
+  id: string;
+  name: string;
+  address: string;
+  imageId: string;
+};
+
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  imageId: string;
+};
+
+const getAvatarImage = (entity: unknown) => {
+  {
+    // Should not be able to access properties that are
+    // not common to both types
+
+    // @ts-expect-error
+    entity.age;
+
+    // @ts-expect-error
+    entity.address;
+  }
+
+  return {
+    url: `https://via.placeholder.com/${entity.imageId}`,
+    alt: `${entity.name} Avatar`,
+  };
+};
+
 // ///////////////// video 152
 
 type Coordinates = {
