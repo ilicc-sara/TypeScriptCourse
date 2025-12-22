@@ -5,6 +5,17 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 152
+
+type Coordinates = {
+  x?: number;
+  y?: number;
+};
+
+type CoordinatesRequired = Required<Coordinates>;
+
+type test = Expect<Equal<CoordinatesRequired, { x: number; y: number }>>;
+
 // ///////////////// video 150
 
 interface Product {
