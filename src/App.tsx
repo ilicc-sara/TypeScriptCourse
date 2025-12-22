@@ -5,6 +5,18 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 155
+
+type ButtonAttributes = {
+  type: "button" | "submit" | "reset";
+};
+
+let type: "button" | "submit" | "reset" = "button";
+
+const buttonAttributes: ButtonAttributes = {
+  type,
+};
+
 // ///////////////// video 153
 
 type User = {
@@ -28,7 +40,7 @@ type Product = {
   imageId: string;
 };
 
-const getAvatarImage = (entity: unknown) => {
+const getAvatarImage = (entity: User | Organisation | Product) => {
   {
     // Should not be able to access properties that are
     // not common to both types
@@ -59,32 +71,32 @@ type test = Expect<Equal<CoordinatesRequired, { x: number; y: number }>>;
 
 // ///////////////// video 150
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   price: number;
+//   description: string;
+// }
 
-const updateProduct = (
-  id: number,
-  productInfo: Partial<Omit<Product, "id">>
-) => {
-  // Do something with the productInfo
-};
+// const updateProduct = (
+//   id: number,
+//   productInfo: Partial<Omit<Product, "id">>
+// ) => {
+//   // Do something with the productInfo
+// };
 
-// Should be able to update individual pieces of information
-updateProduct(1, {
-  name: "Book",
-});
+// // Should be able to update individual pieces of information
+// updateProduct(1, {
+//   name: "Book",
+// });
 
-updateProduct(1, {
-  price: 12.99,
-});
+// updateProduct(1, {
+//   price: 12.99,
+// });
 
-updateProduct(1, {
-  description: "A book about Dragons",
-});
+// updateProduct(1, {
+//   description: "A book about Dragons",
+// });
 
 // ///////////////// video 149
 
