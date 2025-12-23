@@ -5,6 +5,22 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 159
+
+type User = {
+  readonly id: number;
+  name: string;
+  age: number;
+};
+
+const updateUsr = (user: User) => {
+  user.name = "Jane Doe";
+  user.age = 30;
+
+  // @ts-expect-error Should not be able to modify readonly
+  user.id = 1;
+};
+
 // ///////////////// video 157
 
 type ButtonAttributes = {
