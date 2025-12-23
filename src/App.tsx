@@ -5,6 +5,35 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 
+// ///////////////// video 157
+
+type ButtonAttributes = {
+  type: "button" | "submit" | "reset";
+};
+
+const modifyButton = (attributes: ButtonAttributes) => {};
+
+const buttonAttributes = {
+  type: "button",
+};
+
+modifyButton(buttonAttributes);
+
+// Example 2
+
+const modifyButton = (attributes: ButtonAttributes[]) => {};
+
+const buttonsToChange = [
+  {
+    type: "button",
+  },
+  {
+    type: "submit",
+  },
+];
+
+modifyButton(buttonsToChange);
+
 // ///////////////// video 155
 
 type ButtonAttributes = {
