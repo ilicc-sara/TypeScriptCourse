@@ -6,48 +6,74 @@ import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
 
-// ///////////////// video 163
+// ///////////////// video 165
+
+type ButtonType = "button" | "submit" | "reset";
 
 type ButtonAttributes = {
-  type: "button" | "sumbit" | "reset";
+  cancel: {
+    type: ButtonType;
+  };
+  confirm: {
+    type: ButtonType;
+  };
 };
 
-const modifyButton = (attributes: ButtonAttributes) => {};
+const modifyButtons = (attrobutes: ButtonAttributes) => {};
 
-const buttonAttributes = {
-  type: "button",
-} as const;
+const buttonAttributes = Object.freeze({
+  cancel: {
+    type: "button",
+  },
+  confirm: {
+    type: "button",
+  },
+});
 
-modifyButton(buttonAttributes);
+modifyButtons(buttonAttributes);
 
-// ///////////////// video 161
+// ///////////////// video 163
 
-type SearchParams = {
-  q?: string;
-  page?: number;
-  pageSize?: number;
-  sort?: string;
-  order?: "asc" | "desc";
-};
+// type ButtonAttributes = {
+//   type: "button" | "sumbit" | "reset";
+// };
 
-const handleSearchParams = (search: Readonly<SearchParams>) => {
-  // Do something with the search params
+// const modifyButton = (attributes: ButtonAttributes) => {};
 
-  // @ts-expect-error Should not be able to modify readonly
-  search.q = "test";
+// const buttonAttributes = {
+//   type: "button",
+// } as const;
 
-  // @ts-expect-error Should not be able to modify readonly
-  search.page = 1;
+// modifyButton(buttonAttributes);
 
-  // @ts-expect-error Should not be able to modify readonly
-  search.pageSize = 10;
+// // ///////////////// video 161
 
-  // @ts-expect-error Should not be able to modify readonly
-  search.sort = "name";
+// type SearchParams = {
+//   q?: string;
+//   page?: number;
+//   pageSize?: number;
+//   sort?: string;
+//   order?: "asc" | "desc";
+// };
 
-  // @ts-expect-error Should not be able to modify readonly
-  search.order = "asc";
-};
+// const handleSearchParams = (search: Readonly<SearchParams>) => {
+//   // Do something with the search params
+
+//   // @ts-expect-error Should not be able to modify readonly
+//   search.q = "test";
+
+//   // @ts-expect-error Should not be able to modify readonly
+//   search.page = 1;
+
+//   // @ts-expect-error Should not be able to modify readonly
+//   search.pageSize = 10;
+
+//   // @ts-expect-error Should not be able to modify readonly
+//   search.sort = "name";
+
+//   // @ts-expect-error Should not be able to modify readonly
+//   search.order = "asc";
+// };
 
 // ///////////////// video 159
 
