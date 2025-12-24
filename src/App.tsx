@@ -6,6 +6,20 @@ import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
 
+// ///////////////// video 163
+
+type ButtonAttributes = {
+  type: "button" | "sumbit" | "reset";
+};
+
+const modifyButton = (attributes: ButtonAttributes) => {};
+
+const buttonAttributes = {
+  type: "button",
+} as const;
+
+modifyButton(buttonAttributes);
+
 // ///////////////// video 161
 
 type SearchParams = {
@@ -16,7 +30,7 @@ type SearchParams = {
   order?: "asc" | "desc";
 };
 
-const handleSearchParams = (search: SearchParams) => {
+const handleSearchParams = (search: Readonly<SearchParams>) => {
   // Do something with the search params
 
   // @ts-expect-error Should not be able to modify readonly
@@ -26,6 +40,13 @@ const handleSearchParams = (search: SearchParams) => {
   search.page = 1;
 
   // @ts-expect-error Should not be able to modify readonly
+  search.pageSize = 10;
+
+  // @ts-expect-error Should not be able to modify readonly
+  search.sort = "name";
+
+  // @ts-expect-error Should not be able to modify readonly
+  search.order = "asc";
 };
 
 // ///////////////// video 159
@@ -46,30 +67,30 @@ const handleSearchParams = (search: SearchParams) => {
 
 // ///////////////// video 157
 
-type ButtonAttributes = {
-  type: "button" | "submit" | "reset";
-};
+// type ButtonAttributes = {
+//   type: "button" | "submit" | "reset";
+// };
 
-const modifyButton = (attributes: ButtonAttributes) => {};
+// const modifyButton = (attributes: ButtonAttributes) => {};
 
-const buttonAttributes: ButtonAttributes = {
-  type: "button",
-};
+// const buttonAttributes: ButtonAttributes = {
+//   type: "button",
+// };
 
-modifyButton(buttonAttributes);
+// modifyButton(buttonAttributes);
 
-// Example 2
+// // Example 2
 
-const modifyButtons = (attributes: ButtonAttributes[]) => {};
+// const modifyButtons = (attributes: ButtonAttributes[]) => {};
 
-const buttonsToChange = [
-  {
-    type: "button",
-  },
-  {
-    type: "submit",
-  },
-];
+// const buttonsToChange = [
+//   {
+//     type: "button",
+//   },
+//   {
+//     type: "submit",
+//   },
+// ];
 
 // modifyButtons(buttonsToChange);
 
@@ -686,19 +707,19 @@ scores.spanish = 70;
 
 // ////////////////////////////////////////////////////////////////////////////
 
-const throwError = (message: string): never => {
-  throw new Error(message);
-};
+// const throwError = (message: string): never => {
+//   throw new Error(message);
+// };
 
-type Example = string | never;
+// type Example = string | never;
 
-const handleSearchParams = (params: { id?: string }) => {
-  const id = params.id || throwError("No id provided");
+// const handleSearchParams = (params: { id?: string }) => {
+//   const id = params.id || throwError("No id provided");
 
-  type test = Expect<Equal<typeof id, string>>;
+//   type test = Expect<Equal<typeof id, string>>;
 
-  return id;
-};
+//   return id;
+// };
 
 // ///////////////// video 107
 
