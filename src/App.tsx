@@ -21,14 +21,14 @@ type ButtonAttributes = {
 
 const modifyButtons = (attrobutes: ButtonAttributes) => {};
 
-const buttonAttributes = Object.freeze({
+const buttonAttributes = {
   cancel: {
     type: "button",
   },
   confirm: {
     type: "button",
   },
-});
+} as const;
 
 modifyButtons(buttonAttributes);
 
