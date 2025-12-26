@@ -6,6 +6,19 @@ import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
 
+// ///////////////// video 167
+
+function prntNames(names: ReadonlyArray<string>) {
+  for (const name of names) {
+    console.log(name);
+  }
+  // @ts-expect-error
+  names.push("John");
+
+  // @ts-expect-error
+  names[0] = "Billy";
+}
+
 // ///////////////// video 165
 
 type ButtonType = "button" | "submit" | "reset";
