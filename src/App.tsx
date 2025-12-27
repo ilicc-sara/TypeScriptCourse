@@ -6,6 +6,34 @@ import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
 
+// ///////////////// video 169
+
+function printNamesReadonly(names: readonly string[]) {
+  for (const name of names) {
+    console.log(name);
+  }
+}
+
+function printNamesMutable(names: string[]) {
+  for (const name of names) {
+    console.log(name);
+  }
+}
+
+// Mutable arrays are assignable to readonly arrays
+
+const mutableNames = ["John", "Jane", "Mike"];
+
+printNamesReadonly(mutableNames);
+printNamesMutable(mutableNames);
+
+// Readonly arrays are NOT assignable to mutable arrays
+
+const readonlyNames = ["John", "Jane", "Mike"] as const;
+
+printNamesReadonly(readonlyNames);
+printNamesMutable(readonlyNames);
+
 // ///////////////// video 167
 
 function prntNames(names: ReadonlyArray<string>) {
