@@ -5,10 +5,19 @@ import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
+import "@total-typescript/ts-reset";
+
+// ///////////////// video 172
+
+const users = ["matt", "sofia", "waqas"] as const;
+
+users.includes("bryan");
+
+users.indexOf("bryan");
 
 // ///////////////// video 170
 
-type Coordinate = [number, number];
+type Coordinate = readonly [number, number];
 const myHouse: Coordinate = [0, 0];
 
 const dangerousFunction = (arrayOfNumbers: number[]) => {
