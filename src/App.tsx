@@ -6,6 +6,21 @@ import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
 import { serialize } from "v8";
 
+// ///////////////// video 170
+
+type Coordinate = [number, number];
+const myHouse: Coordinate = [0, 0];
+
+const dangerousFunction = (arrayOfNumbers: number[]) => {
+  arrayOfNumbers.pop();
+  arrayOfNumbers.pop();
+};
+
+dangerousFunction(
+  // @ts-expect-error
+  myHouse
+);
+
 // ///////////////// video 169
 
 function printNamesReadonly(names: readonly string[]) {
@@ -32,7 +47,7 @@ printNamesMutable(mutableNames);
 const readonlyNames = ["John", "Jane", "Mike"] as const;
 
 printNamesReadonly(readonlyNames);
-printNamesMutable(readonlyNames);
+// printNamesMutable(readonlyNames);
 
 // ///////////////// video 167
 
