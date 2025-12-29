@@ -8,17 +8,17 @@ import { serialize } from "v8";
 import "@total-typescript/ts-reset";
 
 // ///////////////// video 173
-
+// : Promise<[Error | undefined, any?]>
 const fetchData = async () => {
   const result = await fetch("/");
 
   if (!result.ok) {
-    return [new Error("Could not fetch data.")];
+    return [new Error("Could not fetch data.")] as const;
   }
 
   const data = await result.json();
 
-  return [undefined, data];
+  return [undefined, data] as const;
 };
 
 const example = async () => {
