@@ -7,18 +7,47 @@ import type { Task } from "./types";
 import { serialize } from "v8";
 import "@total-typescript/ts-reset";
 
+// ///////////////// video 175
+
+type ButtonAttributes = {
+  type: "button" | "submit" | "reset";
+};
+
+const modifyButton = (attributes: ButtonAttributes) => {};
+
+const buttonAttributes = {
+  type: "button" as const,
+};
+
+modifyButton(buttonAttributes);
+
+// Example 2
+
+const modifyButtons = (attributes: ButtonAttributes[]) => {};
+
+const buttonsToChange = [
+  {
+    type: "button" as const,
+  },
+  {
+    type: "submit" as const,
+  },
+];
+
+modifyButtons(buttonsToChange);
+
 // ///////////////// video 173
-// : Promise<[Error | undefined, any?]>
-const fetchData = async () => {
+//
+const fetchData = async (): Promise<[Error | undefined, any?]> => {
   const result = await fetch("/");
 
   if (!result.ok) {
-    return [new Error("Could not fetch data.")] as const;
+    return [new Error("Could not fetch data.")];
   }
 
   const data = await result.json();
 
-  return [undefined, data] as const;
+  return [undefined, data];
 };
 
 const example = async () => {
@@ -96,29 +125,29 @@ function prntNames(names: ReadonlyArray<string>) {
 
 // ///////////////// video 165
 
-type ButtonType = "button" | "submit" | "reset";
+// type ButtonType = "button" | "submit" | "reset";
 
-type ButtonAttributes = {
-  cancel: {
-    type: ButtonType;
-  };
-  confirm: {
-    type: ButtonType;
-  };
-};
+// type ButtonAttributes = {
+//   cancel: {
+//     type: ButtonType;
+//   };
+//   confirm: {
+//     type: ButtonType;
+//   };
+// };
 
-const modifyButtons = (attrobutes: ButtonAttributes) => {};
+// const modifyButtons = (attrobutes: ButtonAttributes) => {};
 
-const buttonAttributes = {
-  cancel: {
-    type: "button",
-  },
-  confirm: {
-    type: "button",
-  },
-} as const;
+// const buttonAttributes = {
+//   cancel: {
+//     type: "button",
+//   },
+//   confirm: {
+//     type: "button",
+//   },
+// } as const;
 
-modifyButtons(buttonAttributes);
+// modifyButtons(buttonAttributes);
 
 // ///////////////// video 163
 
