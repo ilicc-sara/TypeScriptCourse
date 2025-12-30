@@ -9,7 +9,15 @@ import "@total-typescript/ts-reset";
 
 // ///////////////// video 176
 
-class CanvasNode {}
+class CanvasNode {
+  readonly x: number;
+  readonly y: number;
+
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+  }
+}
 
 it("Should store some basic properties", () => {
   const canvasNode = new CanvasNode();
