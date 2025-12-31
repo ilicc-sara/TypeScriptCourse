@@ -7,30 +7,49 @@ import type { Task } from "./types";
 import { serialize } from "v8";
 import "@total-typescript/ts-reset";
 
-// ///////////////// video 176
+// ///////////////// video 178
 
 class CanvasNode {
-  readonly x: number;
-  readonly y: number;
-
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-  }
+  x = 0;
+  y = 0;
 }
 
-it("Should store some basic properties", () => {
+it("Should be able to move", () => {
   const canvasNode = new CanvasNode();
 
   expect(canvasNode.x).toEqual(0);
   expect(canvasNode.y).toEqual(0);
 
-  // @ts-expect-error Property is readonly
-  canvasNode.x = 10;
+  canvasNode.move(10, 20);
 
-  // @ts-expect-error Property is readonly
-  canvasNode.y = 20;
+  expect(canvasNode.x).toEqual(10);
+  expect(canvasNode.y).toEqual(20);
 });
+
+// ///////////////// video 176
+
+// class CanvasNode {
+//   readonly x: number;
+//   readonly y: number;
+
+//   constructor() {
+//     this.x = 0;
+//     this.y = 0;
+//   }
+// }
+
+// it("Should store some basic properties", () => {
+//   const canvasNode = new CanvasNode();
+
+//   expect(canvasNode.x).toEqual(0);
+//   expect(canvasNode.y).toEqual(0);
+
+//   // @ts-expect-error Property is readonly
+//   canvasNode.x = 10;
+
+//   // @ts-expect-error Property is readonly
+//   canvasNode.y = 20;
+// });
 
 // ///////////////// video 175
 
