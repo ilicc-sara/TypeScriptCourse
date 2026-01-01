@@ -4,14 +4,19 @@ import "./App.css";
 import { expect, it } from "vitest";
 import type { Expect, Equal, Extends } from "./helpers";
 import type { Task } from "./types";
-import { serialize } from "v8";
+
 import "@total-typescript/ts-reset";
 
 // ///////////////// video 180
 
 class CanvasNode {
-  x = 0;
-  y = 0;
+  x: number;
+  y: number;
+
+  constructor(opts?: { x: number; y: number }) {
+    this.x = opts?.x || 0;
+    this.y = opts?.y || 0;
+  }
 
   move(x: number, y: number) {
     this.x = x;
